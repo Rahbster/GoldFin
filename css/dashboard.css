@@ -1,0 +1,152 @@
+/* Dashboard Styles */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.dashboard-section {
+    background-color: var(--bg-color-light);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-large);
+    padding: var(--spacing-md);
+    box-shadow: var(--box-shadow-card);
+}
+
+.dashboard-section h3 {
+    margin-top: 0;
+    border-bottom: 1px solid var(--divider-color);
+    padding-bottom: var(--spacing-sm);
+}
+
+.dashboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.dashboard-item {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-xs);
+    background-color: var(--calendar-item-bg-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color var(--transition-duration-fast) ease;
+}
+
+.dashboard-item:hover {
+    background-color: var(--card-contract-bg-color);
+}
+
+.dashboard-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items to the top */
+    width: 100%;
+}
+
+.dashboard-item-name-group {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.dashboard-item-client-name {
+    font-weight: 500;
+}
+
+.mini-tab-status-indicator.placeholder {
+    background-color: transparent;
+    /* Ensure it takes up the same space as a real indicator */
+    width: 8px;
+    height: 8px;
+    margin-right: var(--spacing-xs);
+}
+
+/* Styles for dashboard items with mini-tabs */
+.dashboard-item-with-tabs {
+    padding: var(--spacing-xs);
+    background-color: var(--bg-color-light);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.dashboard-item-with-tabs .dashboard-item-header {
+    align-items: flex-start;
+}
+
+.dashboard-item-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.dashboard-item-with-tabs .mini-tabs-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+}
+
+.dashboard-item-with-tabs .calendar-mini-tab {
+    font-size: var(--font-size-xs);
+    padding: 1px 4px;
+}
+
+/* Styles for the simpler cards (Upcoming, Awaiting Deposit) */
+.simple-card {
+    display: flex;
+    align-items: stretch;
+    padding: 0; /* Remove padding to let status bar touch the edge */
+}
+
+.dashboard-item-status-bar {
+    width: 5px;
+    flex-shrink: 0;
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.dashboard-item-content {
+    padding: var(--spacing-xs);
+    flex-grow: 1;
+}
+
+/* Styles for the welcome message on an empty dashboard */
+.empty-dashboard-message {
+    background-color: var(--empty-state-bg-color);
+    border: 1px dashed var(--border-color);
+    border-radius: var(--border-radius-large);
+    padding: var(--spacing-lg);
+    text-align: center;
+    margin-top: var(--spacing-lg);
+}
+
+.empty-dashboard-message p {
+    color: var(--text-color-muted);
+}
+
+/* Specific styling for the 'Contracts Awaiting Deposit' section header */
+.dashboard-section.contracts-awaiting-deposit h3 {
+    background-color: var(--event-status-contract-accepted-bg); /* Blue color used for 'Accepted' status */
+    color: var(--text-color-light);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-large);
+}
+
+/* Specific styling for the 'Upcoming Events' section header */
+.dashboard-section.upcoming-events-next-30-days h3 {
+    background-color: var(--calendar-day-header-color); /* A neutral, dark gray */
+    color: var(--text-color-light);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-large);
+}
+
+/* Specific styling for the 'Proposals Awaiting Approval' section header */
+.dashboard-section.proposals-awaiting-approval h3 {
+    background-color: var(--event-status-sent-bg); /* Blue color used for 'Sent' status */
+    color: var(--text-color-light);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-large);
+}

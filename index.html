@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldFin - Chef Proposal System</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/calendar.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/reports.css">
+    <link rel="stylesheet" href="css/library.css">
+    <link rel="stylesheet" href="css/modals.css">
+    <link rel="stylesheet" href="css/notifications.css">
+    <link rel="stylesheet" href="css/print.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="icons/icon-tab.png">
+    <!-- Quill Rich Text Editor -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <!-- Chart.js for Reports -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* Styles for the clear search button */
+        .search-input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .search-input-container input[type="search"] {
+            padding-right: 2rem; /* Make space for the button */
+        }
+        .clear-search-btn {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div id="animated-overlay" style="display: none;"><img src="assets/overlay.png" alt=""></div>
+
+    <header>
+        <div class="header-title-group">
+            <h1 id="app-title"></h1>
+            <span id="offline-status-indicator" class="offline-status-indicator hidden" title="You are currently offline. Changes will not be synced.">Offline</span>
+            <span id="cloud-status-indicator" class="cloud-status-indicator hidden" title="Cloud Sync is active.">☁️</span>
+            <span id="sync-status-indicator" class="sync-status-indicator hidden" title="Local changes are waiting to be synced to the cloud.">Unsynced</span>
+        </div>
+        <button id="login-btn" class="theme-button hidden">Login with Google</button>
+        <div id="user-menu" class="hidden"></div>
+        <div id="hamburger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <div class="tab-nav">
+            <div id="hamburger-panel" class="hamburger-panel">
+                <button id="business-details-btn" class="theme-button">Business Details</button>
+                <button id="manage-library-btn" class="theme-button">Manage Library</button>
+                <button id="manage-customers-btn" class="theme-button">Customers</button>
+                <button id="cloud-sync-btn" class="theme-button">Cloud Sync</button>
+                <fieldset>
+                    <legend>Data Management</legend>
+                    <button id="export-data-btn" class="theme-button secondary-button">Export All Data</button>
+                    <button id="import-data-btn" class="theme-button secondary-button">Import All Data</button>
+                    <button id="check-for-update-btn" class="theme-button secondary-button">Check for Updates</button>
+                    <button id="clear-site-data-btn" class="theme-button delete-action">Clear Site Data & Reload</button>
+                    <button id="show-console-log-btn" class="theme-button secondary-button">Show Console Log</button>
+                </fieldset>
+                <button id="readme-btn" class="theme-button">ReadMe</button>
+            </div>
+            <button id="dashboard-tab-btn" class="tab-btn active">Dashboard</button>
+            <button id="reports-tab-btn" class="tab-btn">Reports</button>
+            <button id="calendar-tab-btn" class="tab-btn">Calendar</button>
+            <button id="events-tab-btn" class="tab-btn">Events</button>
+            <button id="contracts-tab-btn" class="tab-btn">Contracts</button>
+            <button id="templates-tab-btn" class="tab-btn" style="margin-left: auto;">Templates</button>
+        </div>
+
+        <div id="dashboard-tab-content" class="tab-content active"></div>
+        <div id="reports-tab-content" class="tab-content"></div>
+        <div id="events-tab-content" class="tab-content">
+            <div class="main-content-header">
+                <div class="header-title-group">
+                    <h2>My Events</h2>
+                    <button id="toggle-sort-events-btn" class="theme-button secondary-button icon-button" title="Sort by Name">A-Z</button>
+                    <button id="events-today-btn" class="theme-button secondary-button">Today</button>
+                    <button id="add-event-btn" class="theme-button icon-button circular-icon-button" title="New Event">+</button>
+                </div>
+                <div class="header-controls-group">
+                    <div class="search-input-container">
+                        <input type="search" id="search-events-input" class="theme-input" placeholder="Search by client name...">
+                        <button class="clear-search-btn hidden" data-target="search-events-input">&times;</button>
+                    </div>
+                    <select id="event-status-filter" class="header-select">
+                        <option value="All">All Statuses</option>
+                        <option value="Draft">Draft</option>
+                        <option value="Sent">Sent</option>
+                        <option value="Approved">Approved</option>
+                    </select>
+                    <select id="event-date-range-filter" class="header-select">
+                        <option value="all">All Dates</option>
+                        <option value="next30">Next 30 Days</option>
+                        <option value="next60">Next 60 Days</option>
+                        <option value="next90">Next 90 Days</option>
+                        <option value="last30">Last 30 Days</option>
+                        <option value="last60">Last 60 Days</option>
+                        <option value="last90">Last 90 Days</option>
+                    </select>
+                    <div class="setting-row" style="margin-top: 0; padding: 0; border: none; background: none;">
+                        <label class="toggle">
+                            <span class="toggle-label" style="font-size: 0.9rem;">Show Archived</span>
+                            <span><input class="toggle-checkbox" type="checkbox" id="show-archived-events-toggle"><div class="toggle-switch"></div></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div id="event-list-area"></div>
+        </div>
+
+        <div id="contracts-tab-content" class="tab-content">
+            <div class="main-content-header">
+                <div class="header-title-group">
+                    <h2>My Contracts</h2>
+                    <button id="toggle-sort-contracts-btn" class="theme-button secondary-button icon-button" title="Sort by Client Name">A-Z</button>
+                    <button id="contracts-today-btn" class="theme-button secondary-button">Today</button>
+                </div>
+                <div class="header-controls-group">
+                    <div class="search-input-container">
+                        <input type="search" id="search-contracts-input" class="theme-input" placeholder="Search by client name...">
+                        <button class="clear-search-btn hidden" data-target="search-contracts-input">&times;</button>
+                    </div>
+                    <select id="contract-status-filter" class="header-select">
+                        <option value="All">All Statuses</option>
+                        <option value="Sent">Sent</option>
+                        <option value="Accepted">Accepted</option>
+                        <option value="Deposit Paid">Deposit Paid</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Paid In Full">Paid In Full</option>
+                    </select>
+                    <select id="contract-date-range-filter" class="header-select">
+                        <option value="all">All Dates</option>
+                        <option value="next30">Next 30 Days</option>
+                        <option value="next60">Next 60 Days</option>
+                        <option value="next90">Next 90 Days</option>
+                        <option value="last30">Last 30 Days</option>
+                        <option value="last60">Last 60 Days</option>
+                        <option value="last90">Last 90 Days</option>
+                    </select>
+                    <div class="setting-row" style="margin-top: 0; padding: 0; border: none; background: none;">
+                        <label class="toggle">
+                            <span class="toggle-label" style="font-size: 0.9rem;">Show Archived</span>
+                            <span><input class="toggle-checkbox" type="checkbox" id="show-archived-contracts-toggle"><div class="toggle-switch"></div></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div id="contract-list-area"></div>
+        </div>
+
+        <div id="templates-tab-content" class="tab-content">
+            <div class="main-content-header">
+                <div class="header-title-group">
+                    <h2>My Templates</h2>
+                    <button id="toggle-sort-templates-btn" class="theme-button secondary-button icon-button" title="Sort by Creation Date">📅</button>
+                </div>
+                <div class="header-controls-group">
+                    <div class="search-input-container">
+                        <input type="search" id="search-templates-input" class="theme-input" placeholder="Search by template name...">
+                        <button class="clear-search-btn hidden" data-target="search-templates-input">&times;</button>
+                    </div>
+                </div>
+            </div>
+            <div id="template-list-area"></div>
+        </div>
+
+        <div id="calendar-tab-content" class="tab-content">
+            <div class="main-content-header">
+                <div class="header-title-group">
+                    <button id="prev-month-btn" class="theme-button secondary-button icon-button" title="Previous Month">‹</button>
+                    <h2 id="calendar-month-year"></h2>
+                    <button id="next-month-btn" class="theme-button secondary-button icon-button" title="Next Month">›</button>
+                </div>
+                <div class="calendar-center-nav-group">
+                    <button id="prev-year-btn" class="theme-button secondary-button icon-button" title="Previous Year">«</button>
+                    <div id="calendar-month-tabs" class="tab-nav">
+                        <!-- Month tabs will be generated by JavaScript -->
+                    </div>
+                    <button id="next-year-btn" class="theme-button secondary-button icon-button" title="Next Year">»</button>
+                </div>
+                <div class="header-controls-group">
+                    <button id="today-btn" class="theme-button secondary-button">Today</button>
+                    <div id="calendar-monthly-total" class="calendar-total-display"></div>
+                </div>
+            </div>
+            <div id="calendar-day-headers" class="calendar-day-headers-container">
+                <!-- Day headers will be generated by JavaScript -->
+            </div>
+            <div id="calendar-grid" class="calendar-container" style="border-top-left-radius: 0; border-top-right-radius: 0; border-top: none;">
+                <!-- Calendar will be rendered here by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- SortableJS for drag-and-drop functionality -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js" crossorigin="anonymous"></script>
+
+    <!-- Quill Rich Text Editor -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js" crossorigin="anonymous"></script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js" crossorigin="anonymous"></script>
+
+    <script type="module" src="./js/app.js"></script>
+    <script type="module" src="./js/ui_init.js"></script>
+    <script type="module" src="./js/library_importer.js"></script>
+</body>
+
+<!-- Scroll to Top Button -->
+<button id="scroll-to-top-btn" class="theme-button icon-button circular-icon-button hidden" title="Scroll to Top">↑</button>
+
+</html>

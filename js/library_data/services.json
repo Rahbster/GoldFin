@@ -1,0 +1,16 @@
+[    { "name": "On-site Chef", "description": "Lead chef providing on-site cooking and coordination.", "pricingType": "hourly", "price": 75 },
+    { "name": "Sous Chef", "description": "Second-in-command chef to assist with complex menus or large events.", "pricingType": "hourly", "price": 50 },
+    { "name": "Server / Waitstaff", "description": "Professional staff for table service, bussing, and guest assistance.", "pricingType": "hourly", "price": 30 },
+    { "name": "Bartender", "description": "Professional bartender for mixing and serving drinks. Does not include alcohol cost.", "pricingType": "hourly", "price": 40 },
+    { "name": "Dishwasher", "description": "Dedicated staff for washing dishes and kitchen cleanup.", "pricingType": "hourly", "price": 25 },
+    { "name": "Event Captain", "description": "Manages all front-of-house staff and ensures smooth event flow.", "pricingType": "hourly", "price": 45 },
+    { "name": "Passed Appetizer Service", "description": "Servers dedicated to passing appetizers to guests during a cocktail hour.", "pricingType": "flat", "price": 150 },
+    { "name": "Buffet Setup & Management", "description": "Service for setting up, maintaining, and breaking down a buffet station.", "pricingType": "flat", "price": 200 },
+    { "name": "Table Setting", "description": "Service to set tables with dinnerware, glassware, and flatware before the event.", "pricingType": "flat", "price": 100 },
+    { "name": "Rental Coordination", "description": "Coordination with rental companies for tables, chairs, linens, etc.", "pricingType": "flat", "price": 250 },
+    { "name": "Cake Cutting Service", "description": "Service for cutting and plating a wedding or celebration cake.", "pricingType": "flat", "price": 75 },
+    { "name": "Coffee & Tea Station", "description": "Includes setup and maintenance of a self-serve coffee and tea station.", "pricingType": "flat", "price": 120 },
+    { "name": "Travel Fee (Local)", "description": "Fee for events within a 30-mile radius.", "pricingType": "flat", "price": 50 },
+    { "name": "Travel Fee (Long Distance)", "description": "Fee for events outside a 30-mile radius. Priced per mile.", "pricingType": "hourly", "price": 1.50 },
+    { "name": "Tasting Fee", "description": "Fee for a pre-event menu tasting session for up to 4 guests.", "pricingType": "flat", "price": 200 }
+]

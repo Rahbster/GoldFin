@@ -1,0 +1,180 @@
+/* In css/styles.css or a more appropriate base CSS file */
+.main-content-header {
+}
+
+.main-content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* New styles to create a scrollable panel for the ACTIVE tab content */
+.tab-content.active {
+    display: flex;
+    flex-direction: column;
+    /*
+     * Set a max-height to contain the content within the viewport without a page scroll.
+     * This value is calculated based on the heights of the header, tab navigation, and main content padding.
+    */
+    max-height: calc(100vh - 190px);
+}
+
+#event-list-area, #contract-list-area, #template-list-area, #dashboard-tab-content .dashboard-grid, #calendar-grid {
+    overflow-y: auto; /* Make the list itself scrollable */
+    flex-grow: 1; /* Allow the list to grow to fill available space */
+    padding-right: 10px; /* Add some space for the scrollbar */
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.user-name {
+    font-weight: var(--font-weight-bold);
+}
+
+#login-btn, #logout-btn {
+    margin-left: auto;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 12px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color-light);
+    margin-bottom: var(--spacing-sm);
+}
+
+.status-draft {
+    background-color: var(--calendar-day-header-color); /* Asbestos */
+}
+
+.status-sent {
+    background-color: var(--primary-color-hover); /* Belize Hole */
+}
+
+.status-approved {
+    background-color: var(--success-color); /* Nephritis */
+}
+
+.status-contract-sent { background-color: var(--event-status-contract-sent-bg); /* Peter River */ }
+.status-contract-accepted { background-color: var(--event-status-contract-accepted-bg); /* Amethyst */ }
+.status-contract-deposit-paid { background-color: var(--event-status-approved-bg); color: var(--event-status-approved-text); /* Sun Flower */ }
+.status-contract-completed { background-color: var(--event-status-contract-completed-alt-bg); /* Turquoise */ }
+
+/* Setting Row for Toggles */
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-xs) var(--spacing-sm); /* Increase horizontal padding */
+    background-color: var(--card-event-bg-color);
+    border: 1px solid var(--card-header-border-color);
+    border-radius: var(--border-radius);
+}
+
+.setting-row label {
+    margin-top: 0;
+    font-weight: normal;
+}
+
+/* New Toggle Switch Styles */
+.toggle {
+    cursor: pointer;
+    display: flex; /* Changed to flex */
+    width: 100%; /* Make the toggle label fill the entire width of its parent .setting-row */
+    justify-content: flex-start; /* Align items to the start */
+    align-items: center;
+    gap: var(--spacing-sm); /* Add a consistent gap between the label and the switch */
+}
+
+.toggle-label {
+    flex-grow: 1; /* This makes the label take up all available space, pushing the switch to the right */
+}
+
+.toggle-switch {
+  display: inline-block;
+  background: var(--border-color);
+  border-radius: 16px;
+  width: 58px;
+  height: 32px;
+  position: relative;
+  vertical-align: middle;
+  transition: background var(--transition-duration-fast);
+}
+.toggle-switch:before, .toggle-switch:after {
+  content: "";
+}
+.toggle-switch:before {
+  display: block;
+  /* Use the new image for the toggle knob */
+  background-image: url('../icons/toggle.png');
+  background-size: contain; /* Ensure the image fits within the element */
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  transition: left var(--transition-duration-fast), transform var(--transition-duration-fast), filter var(--transition-duration-fast);
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3)); /* Add a subtle shadow to the image */
+}
+.toggle:hover .toggle-switch:before {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)); /* Slightly more pronounced shadow on hover */
+}
+.toggle-checkbox:checked + .toggle-switch {
+  background: var(--success-color);
+}
+.toggle-checkbox:checked + .toggle-switch:before {
+  left: 30px;
+  transform: scaleX(-1); /* Flip the image horizontally */
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.7)); /* Add a white glow when active */
+}
+.toggle-checkbox {
+  position: absolute;
+  visibility: hidden;
+}
+
+.header-controls-group {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+/* Scroll to Top Button Styles */
+#scroll-to-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: var(--z-index-dropdown);
+    font-size: 1.5rem;
+    opacity: 0.8;
+}
+
+/* Drag handle for sortable items */
+.drag-handle {
+    cursor: grab;
+    padding: 0 5px;
+    font-size: 1.2em;
+    color: var(--text-color-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drag-handle:active {
+    cursor: grabbing;
+}
+
+/* SortableJS ghost element style */
+.sortable-ghost {
+    opacity: 0.4;
+    background-color: var(--primary-color-light);
+    border: 1px dashed var(--primary-color);
+}

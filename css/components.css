@@ -1,0 +1,517 @@
+/* Global Variables */
+:root {
+    /* Colors */
+    --primary-color: #3498db;
+    --primary-color-hover: #2980b9;
+    --secondary-bg-color: #ecf0f1;
+    --secondary-bg-color-hover: #dfe6e9;
+    --text-color-normal: #2c3e50; /* A fixed dark color for general text on light backgrounds */
+    --danger-color: #c0392b;
+    --success-color: #27ae60;
+
+    --text-color-dark: #2c3e50;
+    --text-color-light: white;
+    --icon-color: #333;
+    --text-color-muted: #888;    
+    --bg-color-light: rgba(255, 255, 255, var(--bg-opacity));
+    --bg-color-modal: rgba(255, 255, 255, var(--bg-popup-opacity));
+    --bg-color-solid: #ffffff; /* Solid white for opaque backgrounds */
+
+    --border-color: #ccc;
+    --border-color-light: #bdc3c7;
+    --divider-color: #eee;
+
+    --input-bg-readonly: #e9ecef;
+    --light-gray-bg: #f1f2f6;
+    --hover-bg-light: #f5f5f5;
+    --body-bg-color: #f4f4f9;
+    --empty-state-bg-color: var(--bg-color-light); /* Default to card background */
+
+    /* Warning Banner Colors */
+    --warning-bg-color: #fffbe6;
+    --warning-border-color: #ffe58f;
+
+    /* Notification Colors */
+    --toast-bg-color: #2c3e50;
+    --toast-text-color: #ecf0f1;
+    --toast-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+    /* Calendar & Event Colors */
+    --calendar-day-header-color: #7f8c8d;
+    --calendar-item-bg-color: #f9f9f9;
+    --tooltip-bg-color: #333;
+
+    /* Event Status Colors */
+    --event-status-draft-bg: #bdc3c7;
+    --event-status-draft-text: #2c3e50;
+    --event-status-sent-bg: var(--primary-color);
+    --event-status-approved-bg: var(--success-color);
+    --event-status-approved-text: var(--text-color-light);
+    --event-status-contract-bg: #2ecc71;
+    --event-status-completed-bg: #e67e22;
+    --event-status-contract-sent-bg: #3498db;
+    --event-status-contract-accepted-bg: #9b59b6;
+    --event-status-contract-completed-alt-bg: #1abc9c;
+
+
+    /* Card Colors */
+    --card-event-bg-color: rgba(248, 249, 250, var(--bg-opacity));
+    --card-header-border-color: #e9ecef;
+    --card-actions-btn-bg-color: #f0f0f0;
+    --card-contracted-bg-color: #fdf9e7;
+    --card-contract-bg-color: rgba(234, 245, 253, var(--bg-opacity));
+    --card-template-bg-color: #f4eafc;
+    --card-template-border-color: #8e44ad;
+
+    --popup-bg-color: rgba(255, 255, 255, var(--bg-popup-opacity));
+    /* Modal & Print Colors */
+    --modal-overlay-bg: rgba(0, 0, 0, 0.6);
+    --modal-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    --modal-item-selected-bg: #e8f4f8;
+    --print-text-color: #000;
+
+    /* Fonts */
+    --font-family-base: sans-serif;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.8rem;
+    --font-size-md: 0.9rem;
+    --font-size-base: 1rem;
+    --font-size-large: 1.1rem;
+    --font-size-xl: 1.2rem;
+    --font-size-h1: 1.5rem;
+    --font-weight-bold: bold;
+    --font-style-italic: italic;
+    --font-family-print: 'Times New Roman', Times, serif;
+
+    /* Spacing */
+    --spacing-xs: 0.25rem;  /* 4px */
+    --spacing-sm: 0.5rem;   /* 8px */
+    --spacing-md: 1rem;     /* 16px */
+    --spacing-lg: 2rem;     /* 32px */
+
+    /* Layout Heights */
+    --header-height: 65px; /* Height of the main sticky header */
+    --tab-nav-height: 60px; /* Height of the tab navigation bar including its margin */
+
+    /* Z-Index */
+    --z-index-base: 1;
+    --z-index-dropdown: 1100;
+    --z-index-modal: 1200;
+    --z-index-modal-actions: 1300; /* For menus that appear on top of modals */
+    --z-index-hamburger: 2000;
+    --z-index-hamburger-trigger: 2001;
+    --z-index-toast: 3000;
+
+    /* Transitions */
+    --transition-duration-fast: 0.2s;
+    --transition-duration-base: 0.3s;
+    --transition-duration-slow: 0.4s;
+    
+    /* Other */
+    --border-radius: 5px;
+    --border-radius-large: 8px;
+    --box-shadow-light: 0 4px 12px rgba(0,0,0,0.15);
+    --box-shadow-hamburger: -2px 2px 5px rgba(0,0,0,0.1);
+    --header-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    --header-bg-color: rgba(255, 255, 255, var(--bg-opacity));
+    --box-shadow-calendar-item-hover: 0 1px 3px rgba(0,0,0,0.1);
+    --box-shadow-card: 0 2px 6px rgba(0,0,0,0.08); /* New subtle shadow for cards */
+    --box-shadow-card-hover: 0 4px 8px rgba(0,0,0,0.1);
+    --border-radius-sm: 3px;
+    --background-image-opacity: 0.25;
+    --bg-opacity: 0.75; /* Opacity for main content cards */
+    --bg-popup-opacity: 0.95;
+    --ql-bg-color: rgba(248, 249, 250, var(--bg-opacity));
+}
+
+/* ============================== */
+/* Dark Theme Overrides           */
+/* ============================== */
+[data-theme="dark"] {
+    /* Core Colors */
+    --primary-color: #5fa8d3;
+    --primary-color-hover: #4a90c2;
+    --success-color: #2ecc71;
+    --danger-color: #e74c3c;
+
+    /* Backgrounds */
+    --body-bg-color: #2c3e50;
+    --bg-color-light: rgba(52, 73, 94, var(--bg-opacity));
+    --bg-color-solid: #34495e; /* Solid dark blue for opaque backgrounds */
+    --bg-color-modal: rgba(52, 73, 94, var(--bg-popup-opacity));
+    --secondary-bg-color: #4a6fa5;
+    --secondary-bg-color-hover: #5a7fb5;
+    --card-event-bg-color: rgba(44, 62, 80, var(--bg-opacity));
+    --card-contract-bg-color: rgba(44, 62, 80, var(--bg-opacity));
+    --calendar-item-bg-color: #4a6fa5;
+    --empty-state-bg-color: rgba(44, 62, 80, 0.5); /* A more transparent dark blue */
+
+    /* Template Card Dark Theme */
+    --card-template-bg-color: #4a235a;
+    --card-contracted-bg-color: #5e4d0b; /* Dark gold for approved proposals */
+    --card-template-border-color: #c39bd3;
+    --card-actions-btn-bg-color: #4a6fa5; /* Muted blue for action buttons */
+    --hover-bg-light: #4a6fa5;
+    --popup-bg-color: rgba(52, 73, 94, var(--bg-popup-opacity));
+    --input-bg-readonly: #2c3e50;
+    --header-bg-color: rgba(44, 62, 80, 0.85);
+    --toast-bg-color: #ecf0f1;
+    --modal-overlay-bg: rgba(0, 0, 0, 0.8);
+
+    /* Text */
+    --text-color-dark: #ecf0f1;
+    --text-color-light: #2c3e50; /* For text on light buttons */
+    --text-color-muted: #95a5a6;
+    --icon-color: #ecf0f1;
+    --toast-text-color: #2c3e50;
+
+    /* Borders & Dividers */
+    --border-color: #4a6fa5;
+    --divider-color: #4a6fa5;
+    --card-header-border-color: #4a6fa5;
+
+    /* Other */
+    --background-image-opacity: 0.15;
+    --bg-popup-opacity: 0.95;
+    --box-shadow-light: 0 4px 12px rgba(0,0,0,0.4);
+    --ql-bg-color: rgba(248, 249, 250, var(--bg-opacity));
+}
+
+/* Tab Styles */
+.tab-nav {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: var(--font-size-large);
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px; /* Overlap the container's border */
+    color: var(--icon-color);
+}
+
+.tab-btn.active {
+    border-bottom-color: var(--primary-color);
+    font-weight: var(--font-weight-bold);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+/* Button Styles */
+.theme-button {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    transition: background-color var(--transition-duration-fast) ease;
+}
+
+.theme-button:hover {
+    background-color: var(--primary-color-hover);
+}
+
+.secondary-button {
+    background-color: var(--secondary-bg-color);
+    color: var(--text-color-dark);
+    border: 1px solid var(--border-color-light);
+    margin-top: var(--spacing-xs); /* This was in a duplicate rule */
+}
+
+.secondary-button:hover {
+    background-color: var(--secondary-bg-color-hover);
+}
+
+.delete-action {
+    background-color: var(--danger-color); /* A strong red color */
+    color: var(--text-color-light);
+}
+
+.icon-button {
+    padding: 5px 10px;
+    font-size: var(--font-size-xl);
+    line-height: 1;
+    min-width: 40px;
+    margin-top: 0; /* Override secondary-button margin */
+    /* Add a subtle shadow to the icon text itself */
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+}
+
+.circular-icon-button {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+}
+
+.delete-item-btn {
+    background-color: var(--light-gray-bg) !important;
+    color: var(--danger-color) !important;
+}
+
+/* Form & Input Styles */
+.theme-input {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+.header-select {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color-light);
+}
+
+/* Input validation styles */
+input.valid { border-color: var(--success-color); }
+input.invalid { border-color: var(--danger-color); }
+input.valid:focus { box-shadow: var(--box-shadow-focus-success); }
+input.invalid:focus { box-shadow: var(--box-shadow-focus-danger); }
+
+.details-section input[type="number"] {
+    width: 100px;
+    padding: 5px;
+    text-align: right;
+}
+
+.details-section label {
+    display: block;
+    margin-top: var(--spacing-xs);
+}
+
+/* Container for inputs with embedded icons */
+.readonly-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.readonly-input-container input[readonly] {
+    flex-grow: 1;
+    padding-right: 45px; /* Make space for the icon button */
+    background-color: var(--input-bg-readonly); 
+    cursor: pointer; /* Change cursor to indicate it's clickable */
+}
+
+.readonly-input-container button {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);    
+    background: none;
+    border: none;
+    color: var(--icon-color);
+    cursor: pointer;
+    font-size: var(--font-size-large); /* Slightly smaller to better fit the input height */
+    padding: 0 8px;
+    box-shadow: none; /* Remove button shadows */
+    height: 100%; /* Ensure the button's clickable area fills the container height */
+    opacity: 0.6; /* Make the icon slightly transparent by default */
+    transition: opacity var(--transition-duration-fast) ease; /* Add a smooth transition for the hover effect */
+}
+
+.readonly-input-container:hover button {
+    opacity: 1; /* Make the icon fully visible on hover */
+}
+
+/* Ensure the icon button never gets a background color on hover */
+.readonly-input-container button:hover,
+.readonly-input-container button:focus {
+    background-color: transparent;
+}
+
+/* Hamburger Menu Styles */
+#hamburger-icon {
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: var(--z-index-hamburger-trigger);
+}
+
+#hamburger-icon span {
+    display: block;
+    height: 4px;
+    width: 100%;
+    background: var(--text-color-dark);
+    border-radius: 2px;
+}
+
+.hamburger-panel {
+    position: fixed; /* Position relative to the viewport */
+    top: 65px; /* Position it just below the header */
+    right: 0;
+    background-color: var(--bg-color-light);
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 var(--border-radius-large) var(--border-radius-large);
+    box-shadow: var(--box-shadow-hamburger);
+    transform: translateY(-120%); /* Start further up to ensure it's hidden */
+    transition: transform var(--transition-duration-base) ease-in-out, visibility var(--transition-duration-base);
+    visibility: hidden;
+    z-index: var(--z-index-hamburger);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.hamburger-panel.open {
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.hamburger-panel .theme-button {
+    width: 100%;
+    text-align: left;
+    background-color: var(--secondary-bg-color);
+    color: var(--text-color-dark);
+}
+
+/* Specifically handle the fieldset to stack its contents vertically */
+.hamburger-panel fieldset {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm) var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+/* Override the default margin on setting rows inside the hamburger panel's fieldsets.
+   The 'gap' property on the fieldset is sufficient for spacing. */
+.hamburger-panel fieldset .setting-row {
+    margin-top: 0;
+}
+
+.hamburger-panel .theme-button:hover {
+    background-color: var(--secondary-bg-color-hover);
+}
+
+/* Actions Menu Styles */
+.actions-menu {
+    position: absolute;
+    z-index: var(--z-index-modal-actions); /* Ensure it appears above modals */
+    background-color: var(--popup-bg-color);
+    border: 1px solid var(--border-color);
+    transition: background-color var(--transition-duration-base) ease;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-light);
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+}
+
+.actions-menu button {
+    background: none;
+    border: none;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+    font-size: var(--font-size-base); /* Increase font size for readability */
+}
+
+.actions-menu button:hover {
+    background-color: var(--hover-bg-light);
+}
+
+.actions-menu .delete-action {
+    color: var(--danger-color);
+}
+
+.actions-menu-divider {
+    border-top: 1px solid var(--divider-color);
+    margin: 5px 0;
+}
+
+/* Loading Spinner Overlay */
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 4000; /* Higher than toast */
+    flex-direction: column;
+    color: white;
+    font-size: var(--font-size-large);
+}
+
+.spinner {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid var(--primary-color); /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+/* Sync Status Indicator */
+.sync-status-indicator {
+    background-color: var(--event-status-approved-bg); /* Use the warning/pending color */
+    color: var(--text-color-light);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    padding: 3px 8px;
+    border-radius: 10px;
+    margin-left: var(--spacing-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Style for when the app is actively syncing */
+.sync-status-indicator.syncing {
+    background-color: var(--primary-color); /* Use a neutral blue */
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+.cloud-status-indicator {
+    font-size: var(--font-size-large);
+    margin-left: var(--spacing-sm);
+    opacity: 0.7;
+    cursor: help;
+}
+
+/* Offline Status Indicator */
+.offline-status-indicator {
+    background-color: var(--danger-color);
+    color: var(--text-color-light);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    padding: 3px 8px;
+    border-radius: 10px;
+    margin-left: var(--spacing-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}

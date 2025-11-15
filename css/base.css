@@ -1,0 +1,99 @@
+body {
+    font-family: var(--font-family-base);
+    color: var(--icon-color); /* Using --icon-color as it's #333 */
+    margin: 0;
+    padding: 0;
+    background-color: var(--body-bg-color); /* Fallback color */
+    position: relative;
+    z-index: var(--z-index-base); /* Ensure content is above the background */
+}
+
+body::before {
+    content: '';
+    position: fixed; /* Cover the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../assets/background.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    opacity: var(--background-image-opacity);
+    z-index: -2; /* Place it behind everything */
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-index-dropdown); /* Ensure it's above content but below modals */
+    background-color: var(--header-bg-color); /* Semi-transparent white */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px); /* For Safari compatibility */
+    padding: var(--spacing-md) var(--spacing-lg);
+    gap: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--header-shadow);
+    /* Create a mask that is opaque on the sides and transparent in the middle */
+    mask-image: linear-gradient(to right, black 25%, transparent 50%, black 75%);
+    -webkit-mask-image: linear-gradient(to right, black 25%, transparent 50%, black 75%);
+}
+
+header.scrolled {
+    /* When scrolled, remove the mask to make the background solid */
+    mask-image: none;
+    -webkit-mask-image: none;
+}
+
+header h1 {
+    margin: 0;
+    margin-right: auto; /* Pushes buttons to the right */
+    font-size: var(--font-size-h1);
+    color: var(--text-color-dark);
+}
+
+main {
+    padding: var(--spacing-lg);
+}
+
+.main-content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.header-title-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: auto;
+}
+
+.main-content-header h2 {
+    margin: 0; /* Remove default margin */
+}
+
+/* Utility class to hide elements */
+.hidden {
+    display: none !important;
+}
+
+.empty-list-placeholder {
+    color: var(--text-color-muted);
+    font-style: var(--font-style-italic);
+}
+
+.warning-banner {
+    background-color: var(--warning-bg-color);
+    border: 1px solid var(--warning-border-color);
+    padding: var(--spacing-md);
+    border-radius: 4px;
+}
+
+.warning-banner strong {
+    color: var(--danger-color); /* A strong red color */
+}

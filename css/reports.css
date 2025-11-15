@@ -1,0 +1,40 @@
+/* Reports Tab Styles */
+
+/* Apply parchment background to the reports tab content */
+#reports-tab-content {
+    background-image: url('../assets/parchmenttile.png');
+    background-repeat: repeat;
+    padding: var(--spacing-md); /* Add some padding to the tab content area */
+}
+
+.dashboard-charts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.dashboard-chart-wrapper {
+    background-color: var(--bg-color-solid); /* Use solid background for readability */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-large);
+    padding: var(--spacing-md);
+    box-shadow: var(--box-shadow-card);
+}
+
+.dashboard-chart-wrapper h3 {
+    margin-top: 0;
+    border-bottom: 1px solid var(--divider-color);
+    padding-bottom: var(--spacing-sm);
+}
+
+.chart-container {
+    position: relative;
+}
+
+/* Dark mode overrides for reports to ensure readability */
+[data-theme="dark"] .dashboard-chart-wrapper {
+    background-color: #ffffff; /* Use a solid white background for charts */
+    color: var(--text-color-normal); /* Use the standard dark text color for titles */
+    border-color: #ddd; /* Use a lighter border color */
+}

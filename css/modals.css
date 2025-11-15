@@ -1,0 +1,705 @@
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--modal-overlay-bg);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align modals to the top */
+    padding-top: 5vh; /* Add space from the top */
+    z-index: var(--z-index-modal);
+}
+
+.modal-content {
+    background-color: var(--bg-color-modal);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--modal-shadow);
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    max-height: 85vh; /* Prevent modal from being taller than the screen */
+}
+
+/* Styles for the event card when shown in the calendar modal */
+.calendar-modal-card {
+    /* Inherit modal content properties */
+    background-color: var(--bg-color-light);
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--modal-shadow);
+    display: flex;
+    flex-direction: column;
+    max-height: 85vh;
+    width: 90%;
+    max-width: 90dvw; /* Use dynamic viewport width for a responsive max-width */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--divider-color);
+    padding-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.modal-header h2 {
+    margin: 0;
+}
+
+/* Styles for the print view actions menu button */
+.modal-header .print-view-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs); /* Space between the '...' and 'Print' buttons */
+}
+
+.modal-header .print-view-actions .more-actions-btn {
+    /* Ensure it's visible and has a minimum size */
+    visibility: visible; /* Override the default hidden state from cards.css */
+    position: static; /* CRITICAL: Override 'position: absolute' from cards.css */
+    opacity: 1; /* Ensure it's fully opaque */
+    display: inline-flex; /* Use inline-flex to center content */
+    justify-content: center;
+    align-items: center;
+    width: 30px; /* Fixed width for a circular button */
+    height: 30px; /* Fixed height */
+    font-size: var(--font-size-xl); /* Make the '...' prominent */
+    font-weight: var(--font-weight-bold);
+    border: 1px solid var(--border-color); /* Use standard border color */
+    border-radius: 50%; /* Make it circular */
+    background-color: var(--card-actions-btn-bg-color); /* Use standard light gray background */
+    color: var(--icon-color); /* Use standard text color */
+    cursor: pointer;
+    transition: background-color var(--transition-duration-fast), color var(--transition-duration-fast);
+}
+
+.modal-header .print-view-actions .more-actions-btn:hover {
+    background-color: var(--secondary-bg-color-hover); /* Slightly darker gray on hover */
+    border-color: var(--border-color);
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: var(--font-size-h1);
+    cursor: pointer;
+}
+
+.modal-body {
+    overflow-y: auto; /* Make this part scrollable */
+    padding: 0 10px; /* Add some padding for the scrollbar */
+}
+
+.modal-body form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.modal-body input {
+    width: calc(100% - 20px);
+    padding: var(--spacing-xs);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+.modal-body fieldset {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+}
+
+.modal-body fieldset legend {
+    font-weight: var(--font-weight-bold);
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-xs);
+    border-top: 1px solid var(--divider-color);
+}
+
+.modal-body textarea {
+    width: calc(100% - 20px);
+    padding: var(--spacing-xs);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-family: var(--font-family-base);
+    min-height: 80px;
+}
+
+/* Item Selector Modal Styles */
+.item-selector-list {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.item-selector-item {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--divider-color);
+    cursor: pointer;
+    transition: background-color var(--transition-duration-fast) ease;
+}
+
+.item-selector-item:hover {
+    background-color: var(--calendar-item-bg-color);
+}
+
+.item-selector-item p {
+    margin: var(--spacing-sm) 0 0;
+    font-size: var(--font-size-md);
+    color: var(--text-color-muted);
+    white-space: pre-wrap; /* This will preserve line breaks and spaces */
+}
+
+.item-selector-item.selected {
+    background-color: var(--modal-item-selected-bg);
+    border-left: 4px solid var(--primary-color);
+    padding-left: calc(var(--spacing-md) - 4px); /* Adjust padding to account for border */
+    font-weight: var(--font-weight-bold);
+}
+
+/* Advanced Filter UI for Item Selector */
+.item-selector-filters {
+    padding: var(--spacing-xs);
+    background-color: var(--card-event-bg-color);
+    border: 1px solid var(--card-header-border-color);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-md);
+}
+
+.item-selector-filters h4 {
+    margin-top: 0;
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-md);
+    color: var(--text-color-dark);
+}
+
+.filter-tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    padding: 0;
+    margin-bottom: var(--spacing-xs);
+}
+
+.filter-tag-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 1px solid var(--border-color-light);
+    background-color: var(--secondary-bg-color);
+    color: var(--text-color-dark);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all var(--transition-duration-fast) ease;
+    font-size: var(--font-size-md);
+}
+
+.filter-tag-btn.include {
+    background-color: var(--success-color); /* Green for ADD */
+    color: var(--text-color-light);
+    border-color: var(--success-color);
+}
+
+.filter-tag-btn.exclude {
+    background-color: var(--danger-color); /* Red for NO */
+    color: var(--text-color-light);
+    border-color: var(--danger-color);
+}
+
+.filter-legend-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.filter-legend-header h4 {
+    margin: 0; /* Remove default margins from h4 */
+}
+
+.filter-legend {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.filter-legend .filter-tag-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 0.8rem;
+    cursor: default; /* These are for display only */
+    pointer-events: none; /* Disable clicks */
+}
+
+.selection-badge {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 12px;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    margin-right: var(--spacing-md);
+}
+
+.tag-count-badge {
+    background-color: var(--calendar-day-header-color);
+    color: var(--text-color-light);
+    font-size: var(--font-size-xs);
+    padding: 1px 6px;
+    border-radius: var(--border-radius-large);
+    margin-left: var(--spacing-xs);
+    font-weight: normal; /* Specific override */
+    vertical-align: middle;
+}
+
+/* Added Item Styles */
+.added-item-row {
+    display: grid;
+    /* [handle] [checkbox] [name] [input] [button] */
+    grid-template-columns: auto auto 1fr auto auto;
+    gap: 0 var(--spacing-xs); /* No row gap, 10px column gap */
+    align-items: center;
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid var(--divider-color);
+    border-radius: var(--border-radius);
+}
+
+.category-header {
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 2px solid var(--card-header-border-color);
+    font-size: var(--font-size-large);
+    color: var(--text-color-dark);
+}
+
+.added-item-row .drag-handle { grid-column: 1; }
+.added-item-row .option-select-checkbox { grid-column: 2; }
+.added-item-row .item-name { grid-column: 3; }
+.added-item-row .per-person-input-group, .added-item-row .item-quantity, .added-item-row .item-duration { 
+    grid-column: 4; 
+    justify-self: end; /* Align input to the right of its column */
+}
+.added-item-row .remove-item-btn { grid-column: 5; }
+
+.client-note-input {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: var(--font-size-md);
+    color: var(--text-color-muted);
+}
+
+.added-item-row .item-note-line {
+    grid-column: 2 / span 4; /* Span from checkbox to end */
+    margin-top: 4px;
+}
+
+.remove-item-btn {
+    background: none;
+    border: none;
+    color: var(--danger-color);
+    font-size: var(--font-size-xl);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+}
+
+.added-item-row input[type="number"] {
+    width: 80px;
+    padding: 5px;
+    text-align: center;
+    border-radius: var(--border-radius);
+}
+
+/* On-the-fly Grouping Styles */
+.item-group-container {
+    background-color: var(--card-event-bg-color);
+    border: 1px solid var(--card-header-border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.item-group-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.item-group-header input[type="text"] {
+    flex-grow: 1;
+    width: auto; /* Override default input width */
+    font-size: var(--font-size-xl);
+    border: none;
+    background: none;
+    padding: var(--spacing-xs);
+}
+
+.item-group-options {
+    padding-left: var(--spacing-md);
+}
+
+.group-rules-container {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+.group-rules-container label {
+    font-size: var(--font-size-md);
+    color: var(--text-color-muted);
+}
+
+.group-rules-container .selection-count-badge {
+    margin-left: auto; /* Pushes the badge to the right */
+    background-color: var(--calendar-day-header-color);
+    color: var(--text-color-light);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 10px;
+    font-size: var(--font-size-sm);
+}
+
+.item-group-header .item-main-line {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.per-person-input-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--spacing-xs);
+}
+
+.warning-icon {
+    color: var(--event-status-approved-bg); /* Orange for warning */
+    font-size: var(--font-size-xl);
+    cursor: help;
+    font-weight: var(--font-weight-bold);
+}
+
+.drag-handle {
+    cursor: grab;
+}
+
+/* Position the warning icon within the group header's main line */
+.item-group-header .item-main-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Contract Details Modal */
+.contract-details-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+.details-section h4 {
+    margin-top: 0;
+    border-bottom: 1px solid var(--divider-color);
+    padding-bottom: var(--spacing-xs);
+}
+
+.details-item-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.internal-notes-section {
+    grid-column: 1 / -1; /* Make this section span both columns */
+    background-color: var(--card-contracted-bg-color);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+}
+
+.internal-notes-section textarea {
+    width: 95%;
+    min-height: 60px;
+}
+
+.status-history-section {
+    grid-column: 1 / -1; /* Make this section span both columns */
+}
+.status-history-section ul {
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+/* Styles for Firebase Config Confirmation */
+.config-display-row {
+    display: grid;
+    grid-template-columns: 150px 1fr 50px;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid var(--card-actions-btn-bg-color);
+}
+
+.config-display-row label {
+    font-weight: var(--font-weight-bold);
+    text-align: right;
+}
+
+.config-value {
+    font-family: monospace;
+    background-color: var(--card-event-bg-color);
+    padding: var(--spacing-xs);
+    border-radius: var(--border-radius);
+    word-break: break-all;
+}
+
+.toggle-vis-btn {
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.config-entry-row {
+    display: grid;
+    grid-template-columns: 150px 1fr 50px;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+}
+
+.config-entry-row label {
+    font-weight: var(--font-weight-bold);
+    text-align: right;
+}
+
+.config-value-input {
+    font-family: monospace;
+    width: 100% !important;
+    box-sizing: border-box;
+}
+
+/* ============================== */
+/* Standardized Card Layout       */
+/* ============================== */
+
+.card-header, .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.card-header {
+    margin-bottom: var(--spacing-xs);
+}
+
+.card-header h3 {
+    margin: 0;
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-actions {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.card-body {
+    margin-bottom: var(--spacing-xs);
+}
+
+.card-body .card-detail {
+    margin: var(--spacing-xs) 0;
+    font-size: var(--font-size-md);
+    color: var(--text-color-muted);
+}
+
+.card-body .card-description {
+    font-size: var(--font-size-md);
+    color: var(--text-color-muted);
+    margin: var(--spacing-sm) 0;
+}
+
+.card-footer {
+    margin-top: auto; /* Pushes footer to the bottom */
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid var(--card-actions-btn-bg-color);
+}
+
+.card-cost {
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-large);
+    margin: 0;
+}
+
+.pill-button {
+    border-radius: 25px; /* Creates the pill shape */
+}
+
+/* README Modal Content Area */
+#readme-content {
+    background-color: var(--card-event-bg-color);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--border-radius);
+}
+
+/* Style the 'Add Group' button in the proposal creator to match other buttons */
+#add-group-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    transition: background-color var(--transition-duration-fast) ease;
+}
+
+/* Console Log Modal Specific Styles */
+#console-log-content {
+    font-family: monospace;
+    background-color: var(--toast-bg-color); /* Use a dark background for console */
+    color: var(--toast-text-color); /* Use light text */
+    padding: 1rem;
+    overflow-y: auto; /* Make the content scrollable */
+    white-space: normal; /* Reset default for the container, pre-wrap will be on inner elements */
+}
+
+.log-entry-wrapper {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 0;
+    position: relative; /* For copy button positioning */
+    font-size: var(--font-size-sm); /* Make log text slightly smaller */
+}
+.log-entry-wrapper:last-child {
+    border-bottom: none;
+}
+
+.log-timestamp {
+    color: var(--text-color-muted);
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+}
+.log-level {
+    font-weight: var(--font-weight-bold);
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+}
+.log-level-log { color: var(--text-color-light); }
+.log-level-info { color: var(--primary-color); }
+.log-level-warn { color: var(--event-status-approved-bg); } /* Yellow/Orange */
+.log-level-error { color: var(--danger-color); }
+
+.log-first-line, .log-message {
+    flex-grow: 1;
+    white-space: pre-wrap; /* Preserve formatting for the message part */
+    word-break: break-all;
+}
+
+/* Styles for collapsible log entries */
+.collapsible-log-entry {
+    margin: 0;
+    padding: 0;
+}
+
+.log-summary {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-right: 3rem; /* Space for copy button */
+}
+.log-summary::-webkit-details-marker {
+    display: none; /* Hide default arrow */
+}
+.log-summary:before {
+    content: '▶'; /* Custom arrow */
+    margin-right: 0.5rem;
+    transition: transform 0.2s;
+}
+details[open] > summary:before {
+    content: '▼';
+    transform: rotate(90deg);
+}
+
+.log-full-message {
+    white-space: pre-wrap; /* Preserve formatting for the expanded part */
+    word-break: break-all;
+    margin: 0; /* Remove default pre margin */
+    padding: 0.5rem 0 0.5rem 1rem;
+    border-left: 2px solid var(--border-color);
+    background-color: rgba(0,0,0,0.1); /* Slightly darker background for expanded content */
+}
+
+.log-details-content {
+    position: relative; /* Create a positioning context for the copy button */
+}
+
+.log-details-content .copy-log-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.2rem 0.4rem;
+    font-size: var(--font-size-sm);
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    z-index: 2; /* Ensure it's above the <pre> content */
+}
+
+.log-details-content:hover .copy-log-btn {
+    opacity: 1;
+}
+
+.log-entry-wrapper.single-line {
+    display: flex;
+    align-items: center;
+    padding-left: 1.2rem; /* Add padding to align with multi-line entries */
+}
+
+/* Specific styling for the notes editor textarea */
+#notes-quill-editor, #terms-quill-editor, #pc-internal-notes-editor, #pc-terms-editor {
+    min-height: 250px; /* Provide ample space for editing */
+}
+.ql-editor {
+    font-size: var(--font-size-large); /* Use the larger font size for the content */
+    min-height: 200px; /* Ensure the typing area has a good default height */
+}
+
+/* Style the Quill editor toolbar */
+.ql-toolbar.ql-snow {
+    background-color: var(--ql-bg-color); /* A light, theme-aware background */
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+
+/* Styles for code examples in setup modals */
+.code-block-example {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-break: break-all;
+    color: var(--text-color-normal); /* Ensures text is always readable */
+}
+
+.setup-note {
+    font-size: 0.9rem;
+    color: var(--text-color-muted); /* Use a theme-aware muted color */
+}

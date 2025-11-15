@@ -1,0 +1,34 @@
+/* Toast Notification Styles */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: var(--z-index-toast);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--spacing-xs);
+}
+
+.toast-notification {
+    background-color: var(--toast-bg-color);
+    color: var(--toast-text-color);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--border-radius);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    box-shadow: var(--toast-shadow);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--transition-duration-slow) ease, transform var(--transition-duration-slow) ease;
+}
+
+.toast-notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast-notification.error {
+    background-color: var(--danger-color);
+    color: var(--text-color-light);
+}

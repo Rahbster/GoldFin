@@ -1,0 +1,196 @@
+/* Print Styles */
+@media print {
+    /* Hide everything on the page by default */
+    body * {
+        visibility: hidden;
+    }
+
+    /* Make only the contract details modal and its contents visible */
+    #printable-contract-overlay, #printable-contract-overlay *, #beo-view-modal, #beo-view-modal * {
+        visibility: visible;
+    }
+
+    /* Reposition and style the modal to fill the print page */
+    #printable-contract-overlay, #beo-view-modal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        background-color: white;
+        box-shadow: none;
+        border: none;
+    }
+
+    .modal-overlay {
+        background-color: transparent; /* Remove the dark overlay */
+    }
+
+    .modal-content {
+        box-shadow: none;
+        border: 1px solid var(--print-text-color);
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    /* Hide buttons that shouldn't be printed */
+    .no-print, #close-print-view-btn, #print-btn, #print-view-actions-btn, #close-beo-view-btn, #print-beo-btn {
+        display: none;
+    }
+
+    /* Override on-screen modal styles to allow content to flow across pages */
+    .modal-content {
+        max-height: none; /* Remove height restriction */
+    }
+    .modal-body {
+        overflow-y: visible; /* Allow content to overflow and create new pages */
+    }
+
+    /* Page break control for better document flow */
+    .contract-section h3 {
+        page-break-after: avoid; /* Try to keep headers with their content */
+    }
+
+    .item-list-print li,
+    .print-group-container,
+    .signature-section {
+        page-break-inside: avoid; /* Avoid breaking inside a single item or section */
+    }
+}
+
+/* Printable Contract Styles */
+#printable-contract {
+    max-width: 800px; /* Wider for document view */
+    font-family: var(--font-family-print);
+    color: var(--print-text-color);
+}
+
+/* Ensure BEO also uses the correct print text color */
+#printable-beo {
+    font-family: var(--font-family-print);
+    color: var(--print-text-color);
+}
+
+/* Parchment paper effect for printable document previews */
+#printable-contract, #printable-beo {
+    background-color: #fdf5e6; /* A nice, warm parchment color */
+    /* Use the tiled parchment image */
+    background-image: url('../assets/parchmenttile.png');
+    border: 1px solid #d2c9b8;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Ensure the body of the modal also gets the parchment background */
+#printable-contract .modal-body, #printable-beo .modal-body {
+    background-color: transparent;
+}
+
+.item-list-print {
+    list-style-type: none;
+    padding-left: 0;
+    line-height: 1.6;
+}
+
+.beo-quantity {
+    display: inline-block;
+    min-width: 40px; /* Reserve space for the quantity to maintain alignment */
+    font-weight: bold;
+}
+
+.printable-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.printable-header h1 {
+    margin: 0;
+}
+
+.contract-section {
+    margin-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: var(--spacing-md);
+}
+
+.client-note-print {
+    margin-left: 20px;
+    font-size: var(--font-size-md);
+    color: var(--icon-color);
+}
+
+.contract-section:last-child {
+    border-bottom: none;
+}
+
+.contract-section h3 {
+    border-bottom: 2px solid var(--icon-color);
+    padding-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.financial-summary {
+    text-align: right;
+    font-size: var(--font-size-xl);
+}
+
+.terms-content {
+    font-size: var(--font-size-md);
+    line-height: 1.5;
+    color: var(--icon-color);
+}
+
+.signature-section {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+    page-break-inside: avoid; /* Try to keep this block on one page */
+}
+
+.signature-section p {
+    font-size: var(--font-size-md);
+    font-style: var(--font-style-italic);
+    color: var(--text-color-muted);
+    text-align: center;
+}
+
+.signature-lines {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.signature-line {
+    flex: 1;
+}
+
+.signature-line label {
+    display: block;
+    border-top: 1px solid var(--print-text-color);
+    padding-top: var(--spacing-sm);
+}
+
+/* BEO-specific print styles */
+@media print {
+    #beo-view-modal, #beo-view-modal * {
+        visibility: visible;
+    }
+    #beo-view-modal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        background-color: white;
+        box-shadow: none;
+        border: none;
+    }
+    #beo-view-modal .modal-content {
+        box-shadow: none;
+        border: none;
+    }
+    #beo-view-modal .modal-header {
+        display: none; /* Hide the modal header when printing */
+    }
+}

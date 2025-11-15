@@ -1,0 +1,174 @@
+/* Proposal Card Styles */
+#proposal-list-area, #contract-list-area, #template-list-area {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+}
+
+/* Event list should be a single column to allow event cards to span full width */
+#event-list-area {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.proposal-card {
+    background-color: var(--bg-color-light);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-large);
+    padding: var(--spacing-md);
+    box-shadow: var(--box-shadow-card);
+    transition: box-shadow var(--transition-duration-fast) ease, transform var(--transition-duration-fast) ease, border-color var(--transition-duration-fast) ease;
+    position: relative; /* Needed for positioning the actions button */
+}
+
+.proposal-card-top-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Event Card Specific Styles */
+.proposal-card.event-card {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; /* Ensures padding is included in the width */
+    width: 100%; /* Override the fixed width for event cards */
+    background-color: var(--card-event-bg-color); /* Slightly different background for event cards */
+}
+
+.event-card-header {
+    position: relative; /* For positioning buttons inside */
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--card-header-border-color);
+}
+
+.add-proposal-option-to-event-btn {
+    position: absolute;
+    top: -15px; /* Position it slightly above the container */
+    right: 10px;
+    z-index: 10; /* Ensure it's above the proposal cards */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity var(--transition-duration-fast) ease, visibility var(--transition-duration-fast) ease;
+}
+
+.proposal-options-wrapper {
+    position: relative; /* Create a positioning context for the button */
+    margin-top: var(--spacing-md); /* Add some space above the proposal list */
+}
+
+.proposal-options-container {
+    display: flex;
+    gap: var(--spacing-sm);
+    overflow-x: auto; /* Enable horizontal scrolling */
+    padding-bottom: 10px; /* Space for the scrollbar */
+    padding-top: 5px; /* Add space for the hover transform effect */
+}
+.top-right-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.more-actions-btn {
+    /* No longer needs absolute positioning as it's inside a positioned container */
+    position: relative;
+    top: auto;
+    right: auto;
+    background: var(--card-actions-btn-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    visibility: hidden; /* Hide by default */
+    opacity: 0;
+    transition: opacity var(--transition-duration-fast) ease;
+}
+
+/* Show button on hover, or when the 'show-actions-btn' class is present for touch */
+.proposal-card.event-card:hover .add-proposal-option-to-event-btn,
+.proposal-card.event-card.show-actions-btn .add-proposal-option-to-event-btn {
+    visibility: visible;
+    opacity: 1;
+}
+.proposal-card:hover .more-actions-btn,
+.proposal-card.show-actions-btn .more-actions-btn {
+    visibility: visible;
+    opacity: 1;
+}
+
+.proposal-card:hover {
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* A more pronounced shadow */
+    transform: translateY(-4px); /* A more noticeable lift */
+    border-color: var(--primary-color); /* Highlight with the primary color */
+}
+
+.proposal-card.contracted {
+    background-color: var(--card-contracted-bg-color);
+    border-left: 5px solid var(--event-status-approved-bg);
+}
+
+.proposal-card-cost {
+    font-size: var(--font-size-large);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color-dark);
+    margin-top: var(--spacing-md);
+}
+
+.notes-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px; /* Align with the '...' button */
+    font-size: var(--font-size-xl);
+    visibility: hidden; /* Hide by default */
+    opacity: 0;
+    transition: opacity var(--transition-duration-fast) ease, visibility var(--transition-duration-fast) ease;
+    background: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    line-height: 1;
+    z-index: 10; /* Ensure it's above the proposal cards */;
+    cursor: pointer;
+}
+
+.proposal-card:hover .notes-icon,
+.proposal-card.show-actions-btn .notes-icon,
+.proposal-card.has-notes .notes-icon {
+    visibility: visible;
+    opacity: 1;
+}
+
+.notes-icon-inline {
+    font-size: 0.8em;
+    vertical-align: middle;
+    background: none;
+    border: none;
+    padding: 0 5px;
+    cursor: pointer;
+    display: inline;
+    line-height: 1;
+}
+
+.contract-card {
+    background-color: var(--card-contract-bg-color);
+    border-left: 5px solid var(--primary-color);
+}
+
+.template-card {
+    background-color: var(--card-template-bg-color);
+    border-left: 5px solid var(--card-template-border-color);
+}
+
+/* Styles for the proposal cards inside the event card container */
+.proposal-options-container .proposal-card {
+    flex-shrink: 0; /* Prevent proposal cards from shrinking */
+    width: 250px; /* Give proposal cards a fixed width */
+}

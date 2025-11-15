@@ -1,0 +1,234 @@
+/* Calendar Styles */
+.calendar-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    background-color: var(--bg-color-light);
+    padding: 10px;
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--box-shadow-card);
+}
+
+.calendar-day-header {
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    padding: 0;
+    color: var(--calendar-day-header-color);
+}
+
+.calendar-day {
+    border: 1px solid var(--primary-color); /* Ocean blue border */
+    border-bottom-width: 3px; /* More pronounced bottom for "water line" effect */
+    box-shadow: 0 1px 4px rgba(41, 128, 185, 0.2); /* Subtle shadow using primary-color-hover's RGB with opacity */
+    border-radius: var(--border-radius); /* Ensure rounded corners */
+    min-height: 120px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Allow vertical scrolling if content overflows */
+    position: relative; /* Needed for positioning the '+' button */
+    gap: 3px;
+    transition: all var(--transition-duration-fast) ease; /* Smooth transition for hover */
+}
+
+.calendar-day .add-event-from-calendar-btn {
+    position: absolute;
+    top: 25px; /* Moved down to make space for daily total */
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    font-size: var(--font-size-xl);
+    line-height: 1;
+    cursor: pointer;
+    visibility: hidden; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+/* Show button on hover, or when the 'show-plus-btn' class is present for touch */
+.calendar-day:hover .add-event-from-calendar-btn,
+.calendar-day.show-plus-btn .add-event-from-calendar-btn {
+    visibility: visible;
+    opacity: 1;
+}
+
+.calendar-day.today .day-number {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.day-number {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 5px;
+}
+
+.calendar-event {
+    font-size: var(--font-size-sm);
+    padding: 3px 5px;
+    border-radius: var(--border-radius-sm);
+    color: var(--text-color-light);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    position: relative; /* Needed for tooltip positioning */
+}
+
+.calendar-event:hover {
+    z-index: 10; /* Bring the hovered event to the front */
+}
+
+.calendar-tooltip-text {
+    visibility: hidden;
+    width: 240px;
+    background-color: var(--tooltip-bg-color);
+    color: var(--text-color-light);
+    text-align: left;
+    border-radius: var(--border-radius);
+    padding: 10px 15px;
+    position: absolute;
+    z-index: 1;
+    bottom: 110%; /* Position above the event */
+    left: 50%;
+    margin-left: -120px; /* Center the tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: var(--font-size-md);
+    line-height: 1.4;
+    white-space: normal; /* Allow text to wrap */
+}
+
+.calendar-event:hover .calendar-tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.calendar-tooltip-text h4, .calendar-tooltip-text p {
+    margin: 0 0 5px 0;
+    color: var(--text-color-light);
+}
+
+.event-proposal-draft { background-color: var(--event-status-draft-bg); color: var(--event-status-draft-text); }
+.event-proposal-sent { background-color: var(--event-status-sent-bg); color: var(--text-color-light); } /* A purple for 'Sent' */
+.event-proposal-approved { background-color: var(--event-status-approved-bg); color: var(--event-status-approved-text); }
+.event-contract { background-color: var(--event-status-contract-bg); }
+
+/* New styles for consolidated calendar items */
+.calendar-item-container {
+    background-color: var(--calendar-item-bg-color);
+    border: 1px solid var(--divider-color);
+    border-radius: var(--border-radius);
+    padding: 4px;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+}
+
+.calendar-item-container:hover {
+    box-shadow: var(--box-shadow-calendar-item-hover);
+}
+
+.calendar-item-header {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 3px;
+    padding: 0 2px;
+}
+
+.mini-tabs-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+}
+
+.calendar-mini-tab {
+    font-size: var(--font-size-xs);
+    padding: 2px 4px;
+    border-radius: var(--border-radius-sm);
+    color: var(--text-color-light);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mini-tab-status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+    background-color: var(--border-color); /* Default */
+}
+
+/* Status colors for the indicator dot */
+.mini-tab-status-indicator[data-status="sent"] { background-color: var(--primary-color); }
+.mini-tab-status-indicator[data-status="accepted"] { background-color: var(--event-status-sent-bg); }
+.mini-tab-status-indicator[data-status="deposit-paid"] { background-color: var(--event-status-approved-bg); }
+.mini-tab-status-indicator[data-status="completed"] { background-color: var(--event-status-completed-bg); }
+.mini-tab-status-indicator[data-status="paid-in-full"] { background-color: var(--success-color); }
+
+/* Center the calendar's month navigation controls */
+#calendar-tab-content .main-content-header {
+    justify-content: center;
+}
+
+/* Styles for the month tabs when they are inside the header */
+#calendar-month-tabs.tab-nav {
+    border-bottom: none; /* Remove the bottom border from the tab container */
+    margin-bottom: 0; /* Remove the margin */
+}
+
+/* New container for the central calendar navigation (year buttons + month tabs) */
+.calendar-center-nav-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1; /* This container will now take up the available space */
+}
+
+/* New container for the day headers (Sun, Mon, etc.) */
+.calendar-day-headers-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    padding: 0 10px; /* Align with the grid padding */
+    background-color: transparent; /* Remove the background */
+    box-shadow: none; /* Remove the shadow */
+}
+
+/* Stabilize the calendar month/year display */
+#calendar-month-year {
+    min-width: 200px; /* Set a minimum width to accommodate the longest month name */
+    text-align: center; /* Center the text within the fixed width */
+    margin: 0; /* Remove default h2 margin */
+}
+
+
+/* Styles for the new total displays */
+.calendar-daily-total {
+    position: absolute;
+    top: 5px;
+    right: 7px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--success-color);
+}
+
+.calendar-total-display {
+    font-size: var(--font-size-large);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color-dark);
+    padding: 0 var(--spacing-md);
+    text-align: right;
+}

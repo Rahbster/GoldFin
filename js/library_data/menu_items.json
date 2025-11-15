@@ -1,0 +1,552 @@
+[    {
+        "name": "Classic Caesar Salad",
+        "description": "Crisp romaine lettuce, parmesan cheese, croutons, and a creamy Caesar dressing.",
+        "displayCategory": "Salads",
+        "price": 12,
+        "tags": ["Salad", "Classic"],
+        "dietaryTags": ["Contains Dairy", "Contains Gluten"],
+        "optionalDietaryTags": ["Gluten-Free"]
+    },
+    {
+        "name": "Heirloom Tomato Bruschetta",
+        "description": "Toasted artisan bread topped with fresh heirloom tomatoes, garlic, basil, and a balsamic glaze.",
+        "displayCategory": "Appetizers",
+        "price": 10,
+        "tags": ["Appetizer", "Vegan", "Summer"],
+        "dietaryTags": ["Contains Gluten"],
+        "optionalDietaryTags": ["Gluten-Free"]
+    },
+    {
+        "name": "Mushroom & Truffle Risotto",
+        "description": "Creamy Arborio rice with wild mushrooms, parmesan, and a hint of white truffle oil.",
+        "displayCategory": "Main Courses",
+        "price": 22,
+        "tags": ["Main Course", "Vegetarian", "Winter"],
+        "dietaryTags": ["Contains Dairy"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Pan-Seared Scallops",
+        "description": "Jumbo scallops seared to perfection, served with a lemon-butter sauce and asparagus.",
+        "displayCategory": "Main Courses",
+        "price": 32,
+        "tags": ["Main Course", "Seafood", "Gluten-Free"],
+        "dietaryTags": ["Contains Shellfish", "Contains Dairy"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Filet Mignon (8oz)",
+        "description": "Center-cut filet mignon, grilled to your liking, served with potato gratin and red wine reduction.",
+        "displayCategory": "Main Courses",
+        "price": 45,
+        "tags": ["Main Course", "Beef", "Classic"],
+        "dietaryTags": ["Contains Dairy"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Roasted Chicken Breast",
+        "description": "Herb-roasted chicken breast with root vegetables and a natural pan jus.",
+        "displayCategory": "Main Courses",
+        "price": 28,
+        "tags": ["Main Course", "Poultry", "Gluten-Free"],
+        "dietaryTags": [],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Spicy Tuna Crispy Rice",
+        "description": "Crispy fried rice topped with spicy tuna tartare, avocado, and a touch of serrano.",
+        "displayCategory": "Appetizers",
+        "price": 16,
+        "tags": ["Appetizer", "Seafood", "Spicy"],
+        "dietaryTags": ["Contains Fish", "Contains Gluten"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Butternut Squash Soup",
+        "description": "Silky butternut squash soup with a hint of cinnamon and a crème fraîche swirl.",
+        "displayCategory": "Soups",
+        "price": 9,
+        "tags": ["Appetizer", "Soup", "Vegetarian", "Fall"],
+        "dietaryTags": ["Contains Dairy"],
+        "optionalDietaryTags": ["Vegan"]
+    },
+    {
+        "name": "New York Cheesecake",
+        "description": "Classic New York-style cheesecake with a graham cracker crust and berry coulis.",
+        "displayCategory": "Desserts",
+        "price": 11,
+        "tags": ["Dessert", "Classic", "Vegetarian"],
+        "dietaryTags": ["Contains Dairy", "Contains Gluten", "Contains Eggs"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Vegan Chocolate Avocado Mousse",
+        "description": "A rich and creamy chocolate mousse made from avocado, cocoa, and maple syrup.",
+        "displayCategory": "Desserts",
+        "price": 12,
+        "tags": ["Dessert", "Vegan", "Gluten-Free"],
+        "dietaryTags": ["Vegan"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Mini Crab Cakes",
+        "description": "Bite-sized crab cakes with a zesty remoulade sauce.",
+        "displayCategory": "Appetizers",
+        "price": 18,
+        "tags": ["Appetizer", "Seafood"],
+        "dietaryTags": ["Contains Shellfish", "Contains Gluten", "Contains Eggs"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Arugula & Pear Salad",
+        "description": "Arugula, sliced pears, candied walnuts, goat cheese, and a champagne vinaigrette.",
+        "displayCategory": "Salads",
+        "price": 14,
+        "tags": ["Salad", "Vegetarian", "Gluten-Free"],
+        "dietaryTags": ["Contains Dairy", "Contains Nuts"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Braised Short Rib",
+        "description": "Slow-braised beef short rib, falling off the bone, served with creamy polenta.",
+        "displayCategory": "Main Courses",
+        "price": 35,
+        "tags": ["Main Course", "Beef", "Winter"],
+        "dietaryTags": ["Contains Dairy"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Lobster Mac & Cheese",
+        "description": "Decadent macaroni and cheese with chunks of fresh lobster and a three-cheese blend.",
+        "displayCategory": "Side Dishes",
+        "price": 26,
+        "tags": ["Side Dish", "Seafood", "Classic"],
+        "dietaryTags": ["Contains Dairy", "Contains Gluten", "Contains Shellfish"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Tiramisu",
+        "description": "Classic Italian dessert with layers of coffee-soaked ladyfingers and mascarpone cream.",
+        "displayCategory": "Desserts",
+        "price": 12,
+        "tags": ["Dessert", "Classic", "Vegetarian"],
+        "dietaryTags": ["Contains Dairy", "Contains Gluten", "Contains Eggs"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Pork Belly Sliders",
+        "description": "Crispy pork belly on a soft brioche bun with pickled onions and hoisin sauce.",
+        "displayCategory": "Appetizers",
+        "price": 15,
+        "tags": ["Appetizer", "Pork"],
+        "dietaryTags": ["Contains Gluten"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Quinoa Stuffed Bell Peppers",
+        "description": "Bell peppers stuffed with quinoa, black beans, corn, and spices, topped with avocado.",
+        "displayCategory": "Main Courses",
+        "price": 20,
+        "tags": ["Main Course", "Vegan", "Gluten-Free"],
+        "dietaryTags": ["Vegan"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Shrimp Scampi",
+        "description": "Shrimp sautéed with garlic, white wine, and butter, served over linguine.",
+        "displayCategory": "Main Courses",
+        "price": 24,
+        "tags": ["Main Course", "Seafood", "Pasta"],
+        "dietaryTags": ["Contains Shellfish", "Contains Gluten", "Contains Dairy"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "French Onion Soup",
+        "description": "Rich beef broth with caramelized onions, topped with a crusty baguette and melted Gruyère cheese.",
+        "displayCategory": "Soups",
+        "price": 12,
+        "tags": ["Appetizer", "Soup", "Classic"],
+        "dietaryTags": ["Contains Dairy", "Contains Gluten"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Key Lime Pie",
+        "description": "Tangy and sweet key lime filling in a graham cracker crust, topped with whipped cream.",
+        "displayCategory": "Desserts",
+        "price": 10,
+        "tags": ["Dessert", "Classic"],
+        "dietaryTags": ["Contains Dairy", "Contains Gluten", "Contains Eggs"],
+        "optionalDietaryTags": []
+    }
+    ,
+    {
+        "name": "Burrata with Prosciutto and Melon",
+        "description": "Creamy burrata cheese served with thinly sliced prosciutto, fresh melon, and a drizzle of aged balsamic.",
+        "displayCategory": "Appetizers",
+        "price": 18,
+        "tags": ["Appetizer", "Summer", "Gluten-Free"],
+        "dietaryTags": ["Contains Dairy"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Beef Carpaccio",
+        "description": "Thinly sliced raw beef tenderloin with arugula, capers, shaved Parmesan, and a lemon-dijon vinaigrette.",
+        "displayCategory": "Appetizers",
+        "price": 19,
+        "tags": ["Appetizer", "Beef", "Gluten-Free"],
+        "dietaryTags": ["Contains Dairy"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Steamed Mussels",
+        "description": "A full pound of mussels steamed in a white wine, garlic, and herb broth, served with crusty bread.",
+        "displayCategory": "Appetizers",
+        "price": 20,
+        "tags": ["Appetizer", "Seafood"],
+        "dietaryTags": ["Contains Shellfish"],
+        "optionalDietaryTags": ["Gluten-Free"]
+    },
+    {
+        "name": "Vegetable Spring Rolls",
+        "description": "Crispy spring rolls filled with vegetables, served with a sweet chili dipping sauce.",
+        "displayCategory": "Appetizers",
+        "price": 11,
+        "tags": ["Appetizer", "Vegan", "Asian"],
+        "dietaryTags": ["Contains Gluten", "Vegan"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Whipped Feta Dip",
+        "description": "Creamy whipped feta and cream cheese dip topped with honey and pistachios, served with warm pita.",
+        "displayCategory": "Appetizers",
+        "price": 14,
+        "tags": ["Appetizer", "Vegetarian", "Mediterranean"],
+        "dietaryTags": ["Contains Dairy", "Contains Nuts", "Contains Gluten"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Pork Gyoza",
+        "description": "Pan-fried pork and vegetable dumplings served with a savory ponzu dipping sauce.",
+        "displayCategory": "Appetizers",
+        "price": 13,
+        "tags": ["Appetizer", "Pork", "Asian"],
+        "dietaryTags": ["Contains Gluten"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Calamari Fritti",
+        "description": "Lightly battered and fried calamari rings and tentacles, served with marinara and lemon aioli.",
+        "displayCategory": "Appetizers",
+        "price": 17,
+        "tags": ["Appetizer", "Seafood"],
+        "dietaryTags": ["Contains Gluten"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Tomato Basil Soup",
+        "description": "A classic, creamy tomato soup infused with fresh basil.",
+        "displayCategory": "Soups",
+        "price": 9,
+        "tags": ["Soup", "Vegetarian", "Gluten-Free"],
+        "dietaryTags": ["Contains Dairy"],
+        "optionalDietaryTags": ["Vegan"]
+    },
+    {
+        "name": "Miso Soup",
+        "description": "Traditional Japanese soup with tofu, seaweed, and scallions in a savory miso broth.",
+        "displayCategory": "Soups",
+        "price": 6,
+        "tags": ["Soup", "Vegan", "Asian", "Gluten-Free"],
+        "dietaryTags": ["Contains Soy", "Vegan"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Greek Salad",
+        "description": "Cucumbers, tomatoes, red onions, Kalamata olives, and feta cheese with a lemon-oregano vinaigrette.",
+        "displayCategory": "Salads",
+        "price": 15,
+        "tags": ["Salad", "Vegetarian", "Gluten-Free", "Mediterranean"],
+        "dietaryTags": ["Contains Dairy"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Cobb Salad",
+        "description": "Chopped greens with grilled chicken, bacon, avocado, hard-boiled egg, tomatoes, and blue cheese dressing.",
+        "displayCategory": "Salads",
+        "price": 19,
+        "tags": ["Salad", "Main Course", "Gluten-Free"],
+        "dietaryTags": ["Contains Dairy", "Contains Eggs"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Blackened Mahi-Mahi",
+        "description": "Cajun-spiced Mahi-Mahi fillet, pan-seared and topped with a fresh mango salsa. Served with coconut rice.",
+        "displayCategory": "Main Courses",
+        "price": 34,
+        "tags": ["Main Course", "Seafood", "Spicy", "Gluten-Free"],
+        "dietaryTags": ["Contains Fish"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Chicken Parmesan",
+        "description": "Breaded chicken breast, fried and topped with marinara sauce and melted mozzarella, served over spaghetti.",
+        "displayCategory": "Main Courses",
+        "price": 26,
+        "tags": ["Main Course", "Poultry", "Classic"],
+        "dietaryTags": ["Contains Dairy", "Contains Gluten", "Contains Eggs"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Rack of Lamb",
+        "description": "Herb and rosemary-crusted rack of lamb, roasted and served with a mint demi-glace and potato gratin.",
+        "displayCategory": "Main Courses",
+        "price": 48,
+        "tags": ["Main Course", "Lamb", "Classic"],
+        "dietaryTags": ["Contains Dairy"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Eggplant Parmesan",
+        "description": "Layers of breaded eggplant, marinara, mozzarella, and Parmesan cheese, baked until golden.",
+        "displayCategory": "Main Courses",
+        "price": 23,
+        "tags": ["Main Course", "Vegetarian", "Classic"],
+        "dietaryTags": ["Contains Dairy", "Contains Gluten", "Contains Eggs"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Vegetable Curry",
+        "description": "A medley of seasonal vegetables simmered in a fragrant coconut curry sauce, served with jasmine rice.",
+        "displayCategory": "Main Courses",
+        "price": 21,
+        "tags": ["Main Course", "Vegan", "Gluten-Free", "Asian"],
+        "dietaryTags": ["Vegan"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Garlic Mashed Potatoes",
+        "description": "Creamy mashed potatoes with roasted garlic and butter.",
+        "displayCategory": "Side Dishes",
+        "price": 9,
+        "tags": ["Side Dish", "Vegetarian", "Gluten-Free"],
+        "dietaryTags": ["Contains Dairy"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Creamed Spinach",
+        "description": "Classic steakhouse-style creamed spinach with a hint of nutmeg.",
+        "displayCategory": "Side Dishes",
+        "price": 10,
+        "tags": ["Side Dish", "Vegetarian"],
+        "dietaryTags": ["Contains Dairy", "Contains Gluten"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Roasted Brussels Sprouts",
+        "description": "Brussels sprouts roasted until crispy, tossed with bacon and a balsamic glaze.",
+        "displayCategory": "Side Dishes",
+        "price": 12,
+        "tags": ["Side Dish", "Gluten-Free"],
+        "dietaryTags": [],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Crème Brûlée",
+        "description": "Rich vanilla bean custard with a perfectly caramelized sugar crust.",
+        "displayCategory": "Desserts",
+        "price": 11,
+        "tags": ["Dessert", "Classic", "Vegetarian", "Gluten-Free"],
+        "dietaryTags": ["Contains Dairy", "Contains Eggs"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Molten Chocolate Lava Cake",
+        "description": "A decadent, individual chocolate cake with a warm, liquid chocolate center, served with raspberry sauce.",
+        "displayCategory": "Desserts",
+        "price": 13,
+        "tags": ["Dessert", "Classic", "Vegetarian"],
+        "dietaryTags": ["Contains Dairy", "Contains Gluten", "Contains Eggs"],
+        "optionalDietaryTags": []
+    }
+    ,
+    {
+        "name": "Peruvian Ceviche",
+        "description": "Fresh fish cured in citrus juices, spiced with chili peppers, and served with red onion, cilantro, and sweet potato.",
+        "displayCategory": "Appetizers",
+        "price": 19,
+        "tags": ["Appetizer", "Seafood", "Gluten-Free", "South American"],
+        "dietaryTags": ["Contains Fish"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Chicken Satay with Peanut Sauce",
+        "description": "Grilled chicken skewers marinated in coconut milk and spices, served with a rich and savory peanut dipping sauce.",
+        "displayCategory": "Appetizers",
+        "price": 15,
+        "tags": ["Appetizer", "Poultry", "Asian"],
+        "dietaryTags": ["Contains Nuts"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Hummus Platter",
+        "description": "Creamy chickpea hummus served with warm pita bread, cucumber, and cherry tomatoes.",
+        "displayCategory": "Appetizers",
+        "price": 13,
+        "tags": ["Appetizer", "Vegan", "Mediterranean"],
+        "dietaryTags": ["Contains Gluten", "Vegan"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Argentinian Beef Empanadas",
+        "description": "Flaky pastry filled with seasoned ground beef, onions, and olives, baked until golden.",
+        "displayCategory": "Appetizers",
+        "price": 14,
+        "tags": ["Appetizer", "Beef", "South American"],
+        "dietaryTags": ["Contains Gluten", "Contains Eggs"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Pad Thai with Shrimp",
+        "description": "Stir-fried rice noodles with shrimp, tofu, bean sprouts, and peanuts in a tangy tamarind sauce.",
+        "displayCategory": "Main Courses",
+        "price": 23,
+        "tags": ["Main Course", "Pasta", "Asian"],
+        "dietaryTags": ["Contains Shellfish", "Contains Nuts", "Contains Eggs"],
+        "optionalDietaryTags": ["Vegetarian"]
+    },
+    {
+        "name": "Chicken Tikka Masala",
+        "description": "Grilled chicken chunks in a spiced, creamy tomato-based curry sauce, served with basmati rice.",
+        "displayCategory": "Main Courses",
+        "price": 25,
+        "tags": ["Main Course", "Poultry", "Indian"],
+        "dietaryTags": ["Contains Dairy"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Carne Asada Tacos",
+        "description": "Three corn tortillas filled with grilled marinated steak, topped with onion, cilantro, and salsa verde.",
+        "displayCategory": "Main Courses",
+        "price": 18,
+        "tags": ["Main Course", "Beef", "Mexican", "Gluten-Free"],
+        "dietaryTags": [],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Sushi Platter",
+        "description": "Assortment of California rolls, spicy tuna rolls, and salmon nigiri, served with soy sauce, wasabi, and ginger.",
+        "displayCategory": "Main Courses",
+        "price": 28,
+        "tags": ["Main Course", "Seafood", "Asian"],
+        "dietaryTags": ["Contains Fish", "Contains Shellfish", "Contains Soy"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Falafel Wrap",
+        "description": "Crispy falafel balls in a warm pita wrap with lettuce, tomatoes, and tahini sauce.",
+        "displayCategory": "Main Courses",
+        "price": 16,
+        "tags": ["Main Course", "Vegan", "Mediterranean"],
+        "dietaryTags": ["Contains Gluten", "Vegan"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Lamb Gyro",
+        "description": "Sliced roasted lamb in a fluffy pita with tomatoes, onions, and a creamy tzatziki sauce.",
+        "displayCategory": "Main Courses",
+        "price": 17,
+        "tags": ["Main Course", "Lamb", "Mediterranean"],
+        "dietaryTags": ["Contains Gluten", "Contains Dairy"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Tom Yum Soup",
+        "description": "A classic Thai hot and sour soup with shrimp, mushrooms, lemongrass, and lime leaves.",
+        "displayCategory": "Soups",
+        "price": 12,
+        "tags": ["Soup", "Seafood", "Spicy", "Asian"],
+        "dietaryTags": ["Contains Shellfish"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Vegetable Samosas",
+        "description": "Crispy fried pastry filled with spiced potatoes and peas, served with a mint chutney.",
+        "displayCategory": "Appetizers",
+        "price": 10,
+        "tags": ["Appetizer", "Vegan", "Indian"],
+        "dietaryTags": ["Contains Gluten", "Vegan"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Baklava",
+        "description": "A rich, sweet dessert pastry made of layers of filo filled with chopped nuts and sweetened with honey syrup.",
+        "displayCategory": "Desserts",
+        "price": 9,
+        "tags": ["Dessert", "Vegetarian", "Mediterranean"],
+        "dietaryTags": ["Contains Nuts", "Contains Gluten", "Contains Dairy"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Mango Sticky Rice",
+        "description": "A traditional Thai dessert made with glutinous rice, fresh mango, and a sweet coconut milk sauce.",
+        "displayCategory": "Desserts",
+        "price": 10,
+        "tags": ["Dessert", "Vegan", "Gluten-Free", "Asian"],
+        "dietaryTags": ["Vegan"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Paella Valenciana",
+        "description": "A Spanish classic with saffron-infused rice, chicken, rabbit, shrimp, mussels, and vegetables.",
+        "displayCategory": "Main Courses",
+        "price": 38,
+        "tags": ["Main Course", "Seafood", "Poultry", "European"],
+        "dietaryTags": ["Contains Shellfish"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Korean Bibimbap",
+        "description": "A bowl of warm rice topped with sautéed vegetables, chili paste, a fried egg, and sliced beef.",
+        "displayCategory": "Main Courses",
+        "price": 22,
+        "tags": ["Main Course", "Beef", "Asian"],
+        "dietaryTags": ["Contains Eggs", "Contains Soy"],
+        "optionalDietaryTags": ["Vegetarian"]
+    },
+    {
+        "name": "Jamaican Jerk Chicken",
+        "description": "Chicken marinated in a fiery jerk spice blend, grilled over an open flame, and served with rice and peas.",
+        "displayCategory": "Main Courses",
+        "price": 24,
+        "tags": ["Main Course", "Poultry", "Spicy", "Caribbean", "Gluten-Free"],
+        "dietaryTags": [],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Greek Moussaka",
+        "description": "A rich, baked casserole of layered eggplant, spiced ground lamb, and a creamy béchamel sauce.",
+        "displayCategory": "Main Courses",
+        "price": 26,
+        "tags": ["Main Course", "Lamb", "Mediterranean"],
+        "dietaryTags": ["Contains Dairy", "Contains Gluten"],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Vietnamese Pho (Beef)",
+        "description": "A fragrant noodle soup with a rich beef broth, thin slices of beef, and fresh herbs like basil, mint, and cilantro.",
+        "displayCategory": "Main Courses",
+        "price": 18,
+        "tags": ["Main Course", "Soup", "Beef", "Asian", "Gluten-Free"],
+        "dietaryTags": [],
+        "optionalDietaryTags": []
+    },
+    {
+        "name": "Tres Leches Cake",
+        "description": "A sponge cake soaked in three kinds of milk: evaporated milk, condensed milk, and heavy cream.",
+        "displayCategory": "Desserts",
+        "price": 11,
+        "tags": ["Dessert", "Vegetarian", "Latin American"],
+        "dietaryTags": ["Contains Dairy", "Contains Gluten", "Contains Eggs"],
+        "optionalDietaryTags": []
+    }
+]

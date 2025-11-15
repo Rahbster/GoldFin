@@ -1,0 +1,34 @@
+/* Water Ripple Effect - Toggled via class on body */
+body.water-effect::before {
+    animation: water-ripple 60s ease-in-out infinite;
+}
+
+@keyframes water-ripple {
+    0% { transform: scale(1) translate(0, 0); }
+    25% { transform: scale(1.02) translate(1px, -2px); }
+    50% { transform: scale(1) translate(-1px, 2px); }
+    75% { transform: scale(1.08) translate(-2px, 1px); }
+    100% { transform: scale(1) translate(0, 0); }
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Animated Overlay Styles */
+#animated-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Above the background, below the main content */
+    pointer-events: none; /* Allows clicks to pass through */
+    will-change: transform; /* Optimize for animation */
+}
+
+#animated-overlay img {
+    width: 300px; /* Adjust size as needed */
+    height: auto;
+    transition: transform 0.5s ease; /* Smooth transition for flipping */
+}
+
+#animated-overlay.flipped img {
+    transform: scaleX(-1); /* Flip the image horizontally */
+}
