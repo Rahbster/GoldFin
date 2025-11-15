@@ -96,7 +96,7 @@ async function initializePWAUpdater() {
     let newWorker;
 
 
-    const registration = await navigator.serviceWorker.register('/sw.js');
+    const registration = await navigator.serviceWorker.register('sw.js');
     // console.log('ServiceWorker registration successful with scope: ', registration.scope);
 
     // Listen for a new service worker being installed.
