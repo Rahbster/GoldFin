@@ -1,4 +1,4 @@
-const CACHE_NAME = 'goldfin-pwa-cache-v12'; // Add Reports & Analytics
+const CACHE_NAME = 'goldfin-pwa-cache-v13'; // Robust caching and added files
 const localUrlsToCache = [
     './',
     './index.html',
@@ -17,6 +17,7 @@ const localUrlsToCache = [
     './js/app.js',
     './js/app_viewmodel.js',
     './js/actions.js',
+    './js/components/filter_service.js',
     './js/components/card_renderer.js',
     './js/components/charts.js',
     './js/calendar.js',
@@ -45,6 +46,7 @@ const localUrlsToCache = [
     './js/symbol_manager.js',
     './js/template_renderer.js',
     './js/ui.js',
+    './js/ui_init.js',
     './js/utils.js',
     './sw.js',
     './manifest.json',
@@ -73,11 +75,18 @@ const externalUrlsToCache = [
 
 self.addEventListener('install', (event) => {
     event.waitUntil(
-        (async () => {
-            const cache = await caches.open(CACHE_NAME);
-            console.log('[Service Worker] Caching all: app shell and content');
-            await cache.addAll([...localUrlsToCache, ...externalUrlsToCache]);
-        })()
+        caches.open(CACHE_NAME)
+            .then((cache) => {
+                console.log('[Service Worker] Caching all: app shell and content');
+                const urlsToCache = [...localUrlsToCache, ...externalUrlsToCache];
+                const cachePromises = urlsToCache.map((url) => {
+                    return fetch(url, { cache: 'reload' }).then((response) => {
+                        if (!response.ok) throw new Error(`Request for ${url} failed with status ${response.status}`);
+                        return cache.put(url, response);
+                    });
+                });
+                return Promise.all(cachePromises);
+            })
     );
 });
 
