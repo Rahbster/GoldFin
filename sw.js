@@ -1,4 +1,4 @@
-const CACHE_NAME = 'goldfin-pwa-cache-v14'; // Robust caching and added files
+const CACHE_NAME = 'goldfin-pwa-cache-v15'; // Robust caching and added files
 const localUrlsToCache = [
     './',
     './index.html',
@@ -29,6 +29,7 @@ const localUrlsToCache = [
     './js/event_renderer.js',
     './js/entity_saver.js',
     './js/firebase_sync.js',
+    './js/global_search.js',
     './js/contract_renderer.js',
     './js/library_importer.js',
     './js/menu_item_manager.js',

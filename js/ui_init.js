@@ -14,6 +14,7 @@ import { renderReports } from './reports.js';
 import { renderDashboard } from './dashboard.js';
 import { saveBusinessDetailsToFirebase, updateDocument } from './firebase_sync.js';
 import { appViewModel } from './app_viewmodel.js';
+import { showGlobalSearchModal } from './global_search.js';
 
 export function initializeUIEventListeners() {
     document.getElementById('add-event-btn')?.addEventListener('click', () => showProposalCreator(null, false, true));
@@ -57,6 +58,32 @@ export function initializeUIEventListeners() {
     });
 
     document.getElementById('hamburger-icon')?.addEventListener('click', toggleHamburgerMenu);
+
+    // --- Global Search Integration ---
+    // Add button to hamburger menu
+    const hamburgerPanel = document.getElementById('hamburger-panel');
+    if (hamburgerPanel) {
+        const searchBtn = document.createElement('button');
+        searchBtn.className = 'theme-button secondary-button';
+        searchBtn.style.width = '100%';
+        searchBtn.style.marginBottom = '1rem';
+        searchBtn.style.textAlign = 'left';
+        searchBtn.innerHTML = '🔍 Global Search <span style="float:right; opacity: 0.7; font-size: 0.8em;">Cmd+K</span>';
+        searchBtn.onclick = () => {
+            showGlobalSearchModal();
+            document.getElementById('hamburger-panel').classList.remove('open');
+        };
+        // Insert at the top of the panel
+        hamburgerPanel.prepend(searchBtn);
+    }
+
+    // Add keyboard shortcut (Cmd/Ctrl + K)
+    document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            e.preventDefault();
+            showGlobalSearchModal();
+        }
+    });
 
     // Tab switching logic
     const allTabs = Array.from(document.querySelectorAll('.tab-nav .tab-btn'));

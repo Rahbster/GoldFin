@@ -210,7 +210,7 @@ function renderMenuItemList() { // This now acts as an initializer
 }
 
 
-function renderMenuItemForm(itemId = null) {
+export function renderMenuItemForm(itemId = null) {
     const menuItems = loadMenuItems();
     const item = itemId ? menuItems.find(i => i.id === itemId) : null;
     const isEditing = item !== null;
