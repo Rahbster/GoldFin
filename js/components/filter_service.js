@@ -24,7 +24,7 @@ export class FilterService {
             });
         }
 
-        if (filters.dateRange !== 'all') {
+        if (filters.dateRange !== 'All') {
             filteredEvents = this.applyDateRangeFilter(filteredEvents, filters.dateRange);
         }
 
@@ -50,7 +50,7 @@ export class FilterService {
             filteredContracts = filteredContracts.filter(contract => (contract.status || 'Sent') === filters.status);
         }
 
-        if (filters.dateRange !== 'all') {
+        if (filters.dateRange !== 'All') {
             filteredContracts = this.applyDateRangeFilter(filteredContracts, filters.dateRange);
         }
 

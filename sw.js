@@ -1,4 +1,4 @@
-const CACHE_NAME = 'goldfin-pwa-cache-v13'; // Robust caching and added files
+const CACHE_NAME = 'goldfin-pwa-cache-v14'; // Robust caching and added files
 const localUrlsToCache = [
     './',
     './index.html',

@@ -29,8 +29,8 @@ class AppViewModel {
             businessDetails: {},
             showLibraryImporter: showLibraryImporterModal,
             filters: {
-                events: { searchTerm: '', status: 'All', dateRange: 'all', sort: 'eventDate', showArchived: false },
-                contracts: { searchTerm: '', status: 'All', dateRange: 'all', sort: 'eventDate', showArchived: false },
+                events: { searchTerm: '', status: 'All', dateRange: 'All', sort: 'eventDate', showArchived: false },
+                contracts: { searchTerm: '', status: 'All', dateRange: 'All', sort: 'eventDate', showArchived: false },
                 templates: { searchTerm: '', sort: 'creationDate' }
             }
         };

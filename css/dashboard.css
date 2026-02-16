@@ -135,6 +135,14 @@
     border-radius: var(--border-radius-large);
 }
 
+/* Specific styling for the 'Events with Date TBD' section header */
+.dashboard-section.events-with-date-tbd h3 {
+    background-color: var(--event-status-draft-bg); /* Gray color used for 'Draft' status */
+    color: var(--event-status-draft-text);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-large);
+}
+
 /* Specific styling for the 'Upcoming Events' section header */
 .dashboard-section.upcoming-events-next-30-days h3 {
     background-color: var(--calendar-day-header-color); /* A neutral, dark gray */

@@ -138,7 +138,7 @@ function getCardContentHTML(entity, entityType, event = null) {
     if (entityType === 'event') {
         return `<div class="card-header"><h3>${entity.clientName}</h3><div class="card-actions">${notesIcon} <div class="top-right-actions">${eventWarningIcon}${moreActions}</div></div></div>
                 <div class="card-body">
-                    <p class="card-detail"><strong>Date:</strong> ${new Date(entity.eventDate).toLocaleDateString(navigator.language, { timeZone: 'UTC' })}</p>
+                    <p class="card-detail"><strong>Date:</strong> ${entity.isDateTBD ? 'TBD' : (entity.eventDate ? new Date(entity.eventDate).toLocaleDateString(navigator.language, { timeZone: 'UTC' }) : 'TBD')}</p>
                     <p class="card-detail"><strong>Guests:</strong> ~${entity.guestCount}</p>
                     <p class="card-description">${entity.eventDescription || 'No description'}</p>
                 </div>
@@ -170,7 +170,7 @@ function getCardContentHTML(entity, entityType, event = null) {
                 </div>
                 <div class="card-body">
                     <div class="status-badge status-contract-${status.toLowerCase().replace(/ /g, '-')}">${status}</div>
-                    <p class="card-detail"><strong>Event Date:</strong> ${new Date(entity.eventDate).toLocaleDateString(navigator.language, { timeZone: 'UTC' })}</p>
+                    <p class="card-detail"><strong>Event Date:</strong> ${entity.isDateTBD ? 'TBD' : new Date(entity.eventDate).toLocaleDateString(navigator.language, { timeZone: 'UTC' })}</p>
                     <p class="card-detail"><strong>Contract Date:</strong> ${new Date(entity.contractDate).toLocaleDateString(navigator.language, { timeZone: 'UTC' })}</p>
                 </div>
                 <div class="card-footer">

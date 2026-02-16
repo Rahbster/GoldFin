@@ -105,7 +105,7 @@ export function showPrintableView(entity) {
                         ${entity.clientName ? `<p><strong>Client:</strong> ${entity.clientName}</p>` : ''}
                         ${entity.clientPhone ? `<p><strong>Phone:</strong> ${entity.clientPhone}</p>` : ''}
                         ${entity.clientContact ? `<p><strong>Email:</strong> ${entity.clientContact}</p>` : ''}
-                        ${entity.eventDate ? `<p><strong>Event Date:</strong> ${new Date(entity.eventDate).toLocaleDateString(navigator.language, { timeZone: 'UTC' })}</p>` : ''}
+                        <p><strong>Event Date:</strong> ${entity.isDateTBD ? 'TBD' : (entity.eventDate ? new Date(entity.eventDate).toLocaleDateString(navigator.language, { timeZone: 'UTC' }) : 'TBD')}</p>
                         ${entity.eventStartTime ? `<p><strong>Start Time:</strong> ${formatTime(entity.eventStartTime)}</p>` : ''}
                         ${entity.guestCount > 0 ? `<p><strong>Guest Count:</strong> ~${entity.guestCount}</p>` : ''}
                         ${entity.eventDescription ? `<p><strong>Description:</strong> ${entity.eventDescription}</p>` : ''}

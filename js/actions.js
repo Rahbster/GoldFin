@@ -529,6 +529,7 @@ async function generateContractFromProposal(eventId, proposalId) {
         clientName: event.clientName,
         customerId: event.customerId,
         eventDate: event.eventDate,
+        isDateTBD: event.isDateTBD,
         eventLocation: event.eventLocation,
         eventDescription: event.eventDescription,
         eventStartTime: event.eventStartTime,

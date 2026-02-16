@@ -33,13 +33,16 @@ export function renderDashboard(appData) {
     // Get events that do NOT have a corresponding contract
     const upcomingNonContractedEvents = events.filter(e => !contractedEventIds.has(e.id));
 
+    // Get TBD events (no date or marked TBD)
+    const tbdEvents = upcomingNonContractedEvents.filter(e => e.isDateTBD || !e.eventDate);
+
     // Combine the unique events and all contracts into a single list for upcoming items
     const allUpcomingItems = [...upcomingNonContractedEvents, ...contracts];
 
     // 1. Upcoming Events
     const upcomingEvents = allUpcomingItems
         .filter(c => {
-            if (!c.eventDate) return false; // Skip items without an event date
+            if (!c.eventDate || c.isDateTBD) return false; // Skip items without an event date or marked TBD
             const eventDate = new Date(c.eventDate);
             return eventDate >= today && eventDate <= thirtyDaysFromNow;
         })
@@ -75,6 +78,7 @@ export function renderDashboard(appData) {
     dashboardContent.innerHTML = `
         <div class="dashboard-grid">
             ${renderSection('Upcoming Events (Next 30 Days)', upcomingEvents, null)}
+            ${renderSection('Events with Date TBD', tbdEvents, 'event')}
             ${renderSection('Proposals Awaiting Approval', proposalsAwaiting, 'event')}
             ${renderSection('Contracts Awaiting Deposit', contractsAwaitingDeposit, 'contract')}
         </div>
@@ -148,7 +152,7 @@ function renderDashboardItem(item, type, appData) {
     }
 
     // For Upcoming Events and Awaiting Deposit, show a simpler card
-    const dateInfo = item.eventDate ? new Date(item.eventDate).toLocaleDateString(navigator.language, { timeZone: 'UTC' }) : (item.contractDate ? new Date(item.contractDate).toLocaleDateString(navigator.language, { timeZone: 'UTC' }) : '');
+    const dateInfo = item.isDateTBD ? 'Date: TBD' : (item.eventDate ? new Date(item.eventDate).toLocaleDateString(navigator.language, { timeZone: 'UTC' }) : (item.contractDate ? new Date(item.contractDate).toLocaleDateString(navigator.language, { timeZone: 'UTC' }) : ''));
 
     return `
         <div class="dashboard-item simple-card" data-id="${id}" data-type="${type}">

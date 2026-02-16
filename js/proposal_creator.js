@@ -72,8 +72,11 @@ export function showProposalCreator(entityToEdit = null, isCreatingFromTemplate 
 
     const eventDateHTML = isProposalLike ? `
         <div id="event-date-group">
-            <label for="event-date">Date:</label>
-            <input type="date" id="event-date" name="event-date" ${showEventFields ? 'required' : ''} value="${proposalToEdit?.eventDate || ''}">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.2rem;">
+                <label for="event-date" style="margin-bottom: 0;">Date:</label>
+                <label style="font-size: 0.8rem; cursor: pointer; display: flex; align-items: center;"><input type="checkbox" id="event-date-tbd" style="margin-right: 4px;"> Date TBD</label>
+            </div>
+            <input type="date" id="event-date" name="event-date" ${showEventFields && proposalToEdit?.eventDate && !proposalToEdit?.isDateTBD ? 'required' : ''} value="${proposalToEdit?.eventDate || ''}">
         </div>
     ` : '';
 
@@ -205,6 +208,33 @@ export function showProposalCreator(entityToEdit = null, isCreatingFromTemplate 
             });
         }
     };
+
+    // --- TBD Date Logic ---
+    const dateInput = document.getElementById('event-date');
+    const tbdCheckbox = document.getElementById('event-date-tbd');
+    if (dateInput && tbdCheckbox) {
+        const isTBD = proposalToEdit?.isDateTBD;
+
+        // Initial state
+        if (isTBD) {
+            tbdCheckbox.checked = true;
+            dateInput.required = false;
+        } else if (!dateInput.value && (isCreatingEvent || isEditingEventDetails || isCreatingFromTemplate)) {
+            tbdCheckbox.checked = true;
+            dateInput.required = false;
+        } else {
+            tbdCheckbox.checked = false;
+            dateInput.disabled = false;
+            if (showEventFields) dateInput.required = true;
+        }
+
+        tbdCheckbox.addEventListener('change', () => {
+            dateInput.required = !tbdCheckbox.checked;
+            if (!tbdCheckbox.checked && !dateInput.value) {
+                dateInput.focus();
+            }
+        });
+    }
 
     const clientContactInput = document.getElementById('client-contact');
     if (clientContactInput) {

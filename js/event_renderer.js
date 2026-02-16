@@ -16,7 +16,14 @@ export function renderEvents(events) {
     }
 
     // Sort events by eventDate (default) or clientName
-    events.sort((a, b) => appViewModel.state.filters.events.sort === 'eventDate' ? new Date(a.eventDate) - new Date(b.eventDate) : a.clientName.localeCompare(b.clientName));
+    events.sort((a, b) => {
+        if (appViewModel.state.filters.events.sort === 'eventDate') {
+            if (a.isDateTBD && !b.isDateTBD) return 1; // TBD at bottom
+            if (!a.isDateTBD && b.isDateTBD) return -1;
+            return new Date(a.eventDate) - new Date(b.eventDate);
+        }
+        return a.clientName.localeCompare(b.clientName);
+    });
 
     events.forEach(event => {
         // Add a unique ID to each card for the "Today" button to find

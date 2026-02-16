@@ -16,6 +16,8 @@ export async function saveEntity(context, closeEditorCallback) {
         ? context.event.clientName
         : document.getElementById('client-name').value;
 
+    const isTbdChecked = !isTemplate && document.getElementById('event-date-tbd')?.checked;
+
     const eventDate = isEditingProposal
         ? context.event.eventDate : (isTemplate ? '' : document.getElementById('event-date').value);
     
@@ -36,15 +38,21 @@ export async function saveEntity(context, closeEditorCallback) {
     const internalNotes = context.notesQuillInstance.root.innerHTML;
     const termsAndConditions = context.termsQuillInstance ? context.termsQuillInstance.root.innerHTML : (context.event?.termsAndConditions || '');
 
-    if (!isTemplate && (!clientName || !eventDate)) {
-        alert('Please fill out at least the Client Name and Event Date.');
-        return;
+    if (!isTemplate) {
+        if (!clientName) {
+            alert('Please fill out the Client Name.');
+            return;
+        }
+        if (!isTbdChecked && !eventDate && (context.isCreatingEvent || context.isEditingEventDetails || context.isCreatingFromTemplate)) {
+            alert('Please fill out the Event Date or mark it as TBD.');
+            return;
+        }
     }
 
     const formData = {
         clientName, guestCount, internalNotes, eventDescription, constraints,
         clientPhone, clientContact, eventDate, eventLocation, eventStartTime, eventDuration, termsAndConditions,
-        preEventDuration, postEventDuration,
+        preEventDuration, postEventDuration, isDateTBD: isTbdChecked,
         menuItems: tempProposalState.menuItems,
         services: tempProposalState.services
     };
@@ -129,17 +137,23 @@ export async function saveEntity(context, closeEditorCallback) {
             // ... (rest of the logic)
         }
         saveEvents(events);
+        appViewModel.state.events = events;
         if (context.onSaveCallback) {
-            const templates = loadTemplates();
-            const templateIndex = templates.findIndex(t => t.id === context.template.id);
-            const templateToUpdate = templates[templateIndex];
-            templateToUpdate.name = formData.clientName;
-            templateToUpdate.eventDescription = formData.eventDescription;
-            templateToUpdate.guestCount = parseInt(formData.guestCount, 10) || 0;
-            templateToUpdate.termsAndConditions = formData.termsAndConditions;
-            applyProposalDataToEntity(templates[templateIndex], formData);
-            saveTemplates(templates);
-            context.onSaveCallback(events.find(e => e.id === context.event.id));
+            if (context.isTemplateEdit) {
+                const templates = loadTemplates();
+                const templateIndex = templates.findIndex(t => t.id === context.template.id);
+                const templateToUpdate = templates[templateIndex];
+                templateToUpdate.name = formData.clientName;
+                templateToUpdate.eventDescription = formData.eventDescription;
+                templateToUpdate.guestCount = parseInt(formData.guestCount, 10) || 0;
+                templateToUpdate.termsAndConditions = formData.termsAndConditions;
+                applyProposalDataToEntity(templates[templateIndex], formData);
+                saveTemplates(templates);
+                appViewModel.state.templates = templates;
+                context.onSaveCallback(templates[templateIndex]);
+            } else {
+                context.onSaveCallback(events.find(e => e.id === context.event.id));
+            }
         } else if (context.isContractEdit) {
             const contracts = loadContracts();
             const contractIndex = contracts.findIndex(c => c.contractId === context.contract.contractId);
@@ -148,6 +162,7 @@ export async function saveEntity(context, closeEditorCallback) {
             applyEventDataToEntity(contracts[contractIndex], formData);
             applyProposalDataToEntity(contracts[contractIndex], formData);
             saveContracts(contracts);
+            appViewModel.state.contracts = contracts;
             if (context.onSaveCallback) {
                 context.onSaveCallback(contracts[contractIndex]);
             }
@@ -164,8 +179,16 @@ export async function saveEntity(context, closeEditorCallback) {
 }
 
 function applyEventDataToEntity(eventEntity, formData) {
-    const { clientName, eventDescription, constraints, guestCount, clientPhone, clientContact, eventDate, eventLocation, eventStartTime, eventDuration, preEventDuration, postEventDuration, termsAndConditions } = formData;
-    Object.assign(eventEntity, { clientName, eventDescription, constraints, guestCount: parseInt(guestCount, 10) || 0, clientPhone, clientContact, eventDate, eventLocation, eventStartTime, eventDuration, preEventDuration, postEventDuration, termsAndConditions });
+    const { clientName, eventDescription, constraints, guestCount, clientPhone, clientContact, eventDate, eventLocation, eventStartTime, eventDuration, preEventDuration, postEventDuration, termsAndConditions, isDateTBD } = formData;
+    
+    let finalEventDate = eventDate;
+    if (isDateTBD && !finalEventDate) {
+        // If TBD and no date provided, ensure we have a date string for storage/sorting.
+        // Use creation date or today.
+        finalEventDate = (eventEntity.createdAt ? eventEntity.createdAt.split('T')[0] : new Date().toISOString().split('T')[0]);
+    }
+
+    Object.assign(eventEntity, { clientName, eventDescription, constraints, guestCount: parseInt(guestCount, 10) || 0, clientPhone, clientContact, eventDate: finalEventDate, eventLocation, eventStartTime, eventDuration, preEventDuration, postEventDuration, termsAndConditions, isDateTBD });
     if (tempProposalState.customerId) eventEntity.customerId = tempProposalState.customerId;
 }
 
