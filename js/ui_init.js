@@ -15,6 +15,7 @@ import { renderDashboard } from './dashboard.js';
 import { saveBusinessDetailsToFirebase, updateDocument } from './firebase_sync.js';
 import { appViewModel } from './app_viewmodel.js';
 import { showGlobalSearchModal } from './global_search.js';
+import { showAboutModal } from './modals/about_modal.js';
 
 export function initializeUIEventListeners() {
     document.getElementById('add-event-btn')?.addEventListener('click', () => showProposalCreator(null, false, true));
@@ -75,6 +76,20 @@ export function initializeUIEventListeners() {
         };
         // Insert at the top of the panel
         hamburgerPanel.prepend(searchBtn);
+    }
+
+    // --- About Button Integration ---
+    if (hamburgerPanel) {
+        const aboutBtn = document.createElement('button');
+        aboutBtn.className = 'theme-button secondary-button';
+        aboutBtn.style.width = '100%';
+        aboutBtn.style.marginTop = '1rem';
+        aboutBtn.innerHTML = 'ℹ️ About GoldFin';
+        aboutBtn.onclick = () => {
+            showAboutModal();
+            document.getElementById('hamburger-panel').classList.remove('open');
+        };
+        hamburgerPanel.appendChild(aboutBtn);
     }
 
     // Add keyboard shortcut (Cmd/Ctrl + K)

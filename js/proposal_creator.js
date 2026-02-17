@@ -1,7 +1,7 @@
 //==============================
 // Proposal Creator Logic
 //==============================
-import { showConfirmationModal } from './ui.js';
+import { showConfirmationModal, showToast } from './ui.js';
 import { loadBusinessDetails, loadEvents } from './data_manager.js';
 import { showMenuItemSelector, showServiceSelector, showConstraintEditorModal, showCustomerLookupModal } from './proposal_selectors.js';
 import { validateEmail, formatPhoneNumber } from './utils.js';
@@ -271,7 +271,7 @@ export function showProposalCreator(entityToEdit = null, isCreatingFromTemplate 
         });
     };
 
-    document.getElementById('add-group-btn').onclick = () => {
+    document.getElementById('add-group-btn').onclick = (e) => {
         const newGroup = {
             id: `group_${Date.now()}`,
             itemType: 'group',
@@ -282,6 +282,7 @@ export function showProposalCreator(entityToEdit = null, isCreatingFromTemplate 
         };
         tempProposalState.menuItems.push(newGroup);
         renderAddedItems();
+        showToast('Group Added', 'info', e.target);
     };
 
     document.getElementById('add-service-btn').onclick = () => {

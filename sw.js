@@ -1,4 +1,4 @@
-const CACHE_NAME = 'goldfin-pwa-cache-v15'; // Robust caching and added files
+const CACHE_NAME = 'goldfin-pwa-cache-v16'; // Added About Modal
 const localUrlsToCache = [
     './',
     './index.html',
@@ -37,6 +37,7 @@ const localUrlsToCache = [
     './js/modals/business_details_modal.js',
     './js/modals/readme_modal.js',
     './js/modals/utility_modals.js',
+    './js/modals/about_modal.js',
     './js/reports.js',
     './js/print_view.js',
     './js/proposal_creator.js',
@@ -48,6 +49,7 @@ const localUrlsToCache = [
     './js/template_renderer.js',
     './js/ui.js',
     './js/ui_init.js',
+    './js/ui/StellarNavigator.js',
     './js/utils.js',
     './sw.js',
     './manifest.json',

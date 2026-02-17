@@ -21,13 +21,13 @@ export function showBusinessDetailsModal() {
                 <div class="modal-body">
                     <form id="business-details-form">
                         <label for="business-name">Business Name:</label>
-                        <div id="logo-preview-container" style="text-align: center; margin-bottom: 1rem;">
-                            <img id="logo-preview" src="${logoData || ''}" alt="Logo Preview" style="max-width: 150px; max-height: 150px; display: ${logoData ? 'block' : 'none'}; margin: auto; border: 1px solid #eee; padding: 5px;">
-                        </div>
+                        <input type="text" id="business-name" value="${details.businessName}">
                         <label for="business-logo-input">Company Logo:</label>
                         <input type="file" id="business-logo-input" accept="image/*">
                         <button type="button" id="remove-logo-btn" class="theme-button secondary-button" style="display: ${logoData ? 'block' : 'none'}; margin-top: 5px;">Remove Logo</button>
-                        <input type="text" id="business-name" value="${details.businessName}">
+                        <div id="logo-preview-container" style="text-align: center; margin-bottom: 1rem;">
+                            <img id="logo-preview" src="${logoData || ''}" alt="Logo Preview" style="max-width: 150px; max-height: 150px; display: ${logoData ? 'block' : 'none'}; margin: auto; border: 1px solid #eee; padding: 5px;">
+                        </div>
                         <label for="business-address">Address:</label>
                         <input type="text" id="business-address" value="${details.address}">
                         <label for="business-phone">Phone:</label>

@@ -11,8 +11,13 @@ const modalStack = [];
  * Displays a short-lived toast notification at the bottom of the screen.
  * @param {string} message - The message to display in the toast.
  * @param {'info' | 'error'} [type='info'] - The type of toast to display.
+ * @param {HTMLElement} [targetElement=null] - Optional element to anchor the toast to.
  */
-export function showToast(message, type = 'info') {
+export function showToast(message, type = 'info', targetElement = null) {
+    if (targetElement) {
+        createContextualToast(message, type, targetElement);
+        return;
+    }
     const container = document.getElementById('toast-container') || createToastContainer();
     createNewToast(container, message, type);
 }
@@ -41,6 +46,54 @@ function createNewToast(container, message, type) {
     setTimeout(() => {
         toast.remove();
     }, 4000);
+}
+
+function injectContextualToastStyles() {
+    if (document.getElementById('contextual-toast-styles')) return;
+    const style = document.createElement('style');
+    style.id = 'contextual-toast-styles';
+    style.textContent = `
+        .contextual-toast {
+            position: fixed;
+            background-color: var(--bg-color-dark, #333);
+            color: var(--text-color-light, #fff);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            pointer-events: none;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 10000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            white-space: nowrap;
+        }
+        .contextual-toast.show {
+            opacity: 1;
+            transform: translate(-50%, -150%) scale(1);
+        }
+        .contextual-toast.info { background-color: var(--primary-color, #007bff); }
+        .contextual-toast.error { background-color: var(--danger-color, #dc3545); }
+    `;
+    document.head.appendChild(style);
+}
+
+function createContextualToast(message, type, targetElement) {
+    injectContextualToastStyles();
+    const toast = document.createElement('div');
+    toast.className = `contextual-toast ${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    const rect = targetElement.getBoundingClientRect();
+    toast.style.left = `${rect.left + rect.width / 2}px`;
+    toast.style.top = `${rect.top}px`;
+
+    requestAnimationFrame(() => toast.classList.add('show'));
+    setTimeout(() => {
+        toast.classList.remove('show');
+        toast.addEventListener('transitionend', () => toast.remove());
+    }, 2000);
 }
 
 /**
@@ -153,6 +206,21 @@ export function showSpinner(message = 'Loading...') {
  */
 export function hideSpinner() {
     document.getElementById('spinner-overlay')?.remove();
+}
+
+/**
+ * Copies text to clipboard and shows a toast.
+ * @param {string} text - The text to copy.
+ * @param {string} [successMessage='Copied to clipboard!'] - Custom success message.
+ */
+export async function copyToClipboard(text, successMessage = 'Copied to clipboard!') {
+    try {
+        await navigator.clipboard.writeText(text);
+        showToast(successMessage, 'info');
+    } catch (err) {
+        console.error('Failed to copy text: ', err);
+        showToast('Failed to copy text.', 'error');
+    }
 }
 
 
@@ -340,13 +408,7 @@ export function showConsoleLogModal() {
             `[${log.timestamp}] [${log.level.toUpperCase()}] ${log.message}`
         ).join('\n');
 
-        try {
-            await navigator.clipboard.writeText(logText);
-            showToast('All logs copied to clipboard!', 'info');
-        } catch (err) {
-            console.error('Failed to copy logs:', err);
-            showToast('Failed to copy logs.', 'error');
-        }
+        copyToClipboard(logText, 'All logs copied to clipboard!');
     };
 
     // Add event listeners for individual copy buttons within expanded logs
@@ -356,14 +418,8 @@ export function showConsoleLogModal() {
         if (copyBtn) {
             const logIndex = parseInt(copyBtn.dataset.logIndex, 10);
             if (!isNaN(logIndex) && consoleLogs[logIndex]) {
-                try {
-                    const fullLogMessage = `[${consoleLogs[logIndex].timestamp}] [${consoleLogs[logIndex].level.toUpperCase()}] ${consoleLogs[logIndex].message}`;
-                    await navigator.clipboard.writeText(fullLogMessage);
-                    showToast('Log entry copied to clipboard!', 'info');
-                } catch (err) {
-                    console.error('Failed to copy log entry:', err);
-                    showToast('Failed to copy log entry.', 'error');
-                }
+                const fullLogMessage = `[${consoleLogs[logIndex].timestamp}] [${consoleLogs[logIndex].level.toUpperCase()}] ${consoleLogs[logIndex].message}`;
+                copyToClipboard(fullLogMessage, 'Log entry copied to clipboard!');
             }
         }
     });

@@ -34,7 +34,9 @@ export function renderDashboard(appData) {
     const upcomingNonContractedEvents = events.filter(e => !contractedEventIds.has(e.id));
 
     // Get TBD events (no date or marked TBD)
-    const tbdEvents = upcomingNonContractedEvents.filter(e => e.isDateTBD || !e.eventDate);
+    const tbdEvents = upcomingNonContractedEvents
+        .filter(e => e.isDateTBD || !e.eventDate)
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     // Combine the unique events and all contracts into a single list for upcoming items
     const allUpcomingItems = [...upcomingNonContractedEvents, ...contracts];
@@ -77,8 +79,8 @@ export function renderDashboard(appData) {
 
     dashboardContent.innerHTML = `
         <div class="dashboard-grid">
-            ${renderSection('Upcoming Events (Next 30 Days)', upcomingEvents, null)}
             ${renderSection('Events with Date TBD', tbdEvents, 'event')}
+            ${renderSection('Upcoming Events (Next 30 Days)', upcomingEvents, null)}
             ${renderSection('Proposals Awaiting Approval', proposalsAwaiting, 'event')}
             ${renderSection('Contracts Awaiting Deposit', contractsAwaitingDeposit, 'contract')}
         </div>
@@ -137,6 +139,8 @@ function renderDashboardItem(item, type, appData) {
             else if (proposal.status === 'Sent') statusClass = 'event-proposal-sent';
             return `<div class="calendar-mini-tab ${statusClass}">${proposal.name}</div>`;
         }).join('');
+
+        const dateDisplay = item.isDateTBD ? 'TBD' : (item.eventDate ? new Date(item.eventDate).toLocaleDateString(navigator.language, { timeZone: 'UTC' }) : 'TBD');
         
         return `
             <div class="dashboard-item dashboard-item-with-tabs" data-id="${id}" data-type="${type}">
@@ -145,7 +149,7 @@ function renderDashboardItem(item, type, appData) {
                         <span class="dashboard-item-client-name">${item.clientName}</span>
                         <div class="mini-tabs-wrapper">${miniTabsHTML}</div>
                     </div>
-                    <span class="dashboard-item-date">${new Date(item.eventDate).toLocaleDateString(navigator.language, { timeZone: 'UTC' })}</span>
+                    <span class="dashboard-item-date">${dateDisplay}</span>
                 </div>
             </div>
         `;
