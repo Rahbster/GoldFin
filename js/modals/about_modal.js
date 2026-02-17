@@ -38,7 +38,7 @@ export function showAboutModal() {
         <div id="about-modal" class="modal">
             <div class="modal-content">
                 <span id="close-about-modal" class="close-modal">&times;</span>
-                <h2 style="text-align:center; margin-bottom: 20px; font-family: 'Orbitron', sans-serif; color: #aee1f9; text-shadow: 0 0 10px #6c3fd1;">GoldFin</h2>
+                <h2 style="text-align:center; margin-bottom: 20px; font-family: 'Orbitron', sans-serif; color: #aee1f9; text-shadow: 0 0 10px #6c3fd1;">GoldFin Kitchen</h2>
                 
                 <div id="carousel-container">
                     <div id="stellar-carousel"></div>
